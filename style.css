@@ -122,7 +122,7 @@ h1 {
 .decrypt-button {
     grid-column-start: 3;
     grid-row-start: 2;
-    margin-left: .5rem;
+    margin-left: -.25rem;
 }
 
 /* Animate output display */

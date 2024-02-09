@@ -58,7 +58,7 @@
     in a form we can use for the encrypt operation.
     */
   const getMessageEncoding = () => {
-    let msg = document.querySelector("#hkdf-message").value;
+    let msg = document.querySelector("#seed").value;
     let enc = new TextEncoder();
     return enc.encode(msg);
   };
@@ -237,7 +237,7 @@
     message.additionalData = await asUint8Array(passphraseHash.substring(16), 16);
   }
 
-  function agreeSharedSecretKey() {
+  function seedAliasMain() {
     let encryptButton = document.querySelector(".encrypt .encrypt-button");
     encryptButton.addEventListener("click", async () => {
       await encrypt();
@@ -263,5 +263,5 @@
     } 
   }
 
-  agreeSharedSecretKey();
+  seedAliasMain();
  })();
