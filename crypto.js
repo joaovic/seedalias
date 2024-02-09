@@ -3,7 +3,7 @@
   const message = {
     salt: null,
     iv: null,
-    ciphertext: null,
+    encrypted: null,
     secretKey: null,
     additionalData: null,
   };
@@ -19,6 +19,30 @@
     }
   );
   
+  const hexStringToArrayBuffer = (str) =>{
+    const hexLetters = str.split("")
+    const intCodes = [];
+
+    for(let i=0; i < hexLetters.length; i+=2) {
+      const hexCode = "0x"+hexLetters[i]+hexLetters[i+1];
+      const intCode = parseInt(hexCode, 16);
+      intCodes.push(intCode);
+    }
+
+    return new Uint8Array(intCodes);
+  };
+  
+  const arrayBufferToHexString = (buffer) => {
+    const byteArray = new Uint8Array(buffer);
+    const hexCodes = [...byteArray].map(value => {
+        const hexCode = value.toString(16);
+        const paddedHexCode = hexCode.padStart(2, '0');
+        return paddedHexCode;
+    });
+  
+    return hexCodes.join('');
+  };
+
   /*
   Get some key material to use as input to the deriveBits method.
   The key material is the passphrase supplied by the user.
@@ -58,17 +82,17 @@
     in a form we can use for the encrypt operation.
     */
   const getMessageEncoding = () => {
-    let msg = document.querySelector("#seed").value;
-    let enc = new TextEncoder();
+    const msg = document.querySelector("#seed").value;
+    const enc = new TextEncoder();
     return enc.encode(msg);
   };
 
   const asUint8Array = async (val, s) => {
-    let arr = new Uint8Array(s);
+    const arr = new Uint8Array(s);
 
     return window.crypto.subtle.digest('SHA-256', new TextEncoder('utf-8').encode(val))
     .then(h => {
-      let view = new DataView(h);
+      const view = new DataView(h);
 
       for (let i = 0; i < s; i++) {
         arr[i] = view.getUint8(i);
@@ -80,8 +104,8 @@
 
   /*
     Encrypt the message using the secret key.
-    Update the "ciphertextValue" box with a representation of part of
-    the ciphertext.
+    Update the "encryptedValue" box with a representation of part of
+    the encrypted seed.
     */
   const encrypt = async () => {
     const passphraseValue = document.querySelector("#encrypt-passphrase").value;
@@ -94,15 +118,15 @@
 
     await calcMessageData(passphraseValue);
 
-    const ciphertextValue = document.querySelector(".encrypt .ciphertext-value");
-    ciphertextValue.textContent = "";
+    const encryptedValue = document.querySelector(".encrypt .encrypted-value");
+    encryptedValue.textContent = "";
     const decryptedValue = document.querySelector(".decrypt .decrypted-value");
     decryptedValue.textContent = "";
 
     const key = await getDerivedKey(message.secretKey, message.salt);
     const encodedMessage = getMessageEncoding();
 
-    message.ciphertext = await window.crypto.subtle.encrypt(
+    message.encrypted = await window.crypto.subtle.encrypt(
       {
         name: "AES-GCM",
         iv: message.iv,
@@ -112,25 +136,21 @@
       encodedMessage
     );
 
-    ciphertextValue.classList.add("fade-in");
-    ciphertextValue.addEventListener("animationend", () => {
-      ciphertextValue.classList.remove("fade-in");
+    encryptedValue.classList.add("fade-in");
+    encryptedValue.addEventListener("animationend", () => {
+      encryptedValue.classList.remove("fade-in");
     });
     
-    const buffer = new Uint8Array(message.ciphertext, 0, 5);
-    ciphertextValue.textContent = `${buffer}...[${message.ciphertext.byteLength} bytes total]`;
+    const encryptedMessage = arrayBufferToHexString(message.encrypted);
+    encryptedValue.textContent = `${encryptedMessage.substring(0, 12)}...[${message.encrypted.byteLength} bytes total]`;
     
-    const encryptedMessage = new TextEncoder().encode(ab2str(message.ciphertext));
     document.querySelector("#encrypted-message").value = encryptedMessage;
-
   }
 
   const saveToFile = () => {
-    if (message.ciphertext !== null && message.ciphertext != "") {
-      const encrypted = document.querySelector("#encrypted-message");
-      encrypted.value = new TextEncoder("").encode(ab2str(message.ciphertext));
-  
+    if (message.encrypted !== null && message.encrypted != "") {
       const filename = "encrypted-key.txt";
+      const encrypted = document.querySelector("#encrypted-message");
       saveOrOpenBlob(new Blob([encrypted.value]), filename || "encrypted.txt");
     } else {
       alert("Please, encrypt the message first...")
@@ -145,19 +165,6 @@
     tempEl.download = fileName;
     tempEl.click();
     window.URL.revokeObjectURL(url);
-  };
-
-  const ab2str = buf => {
-    return String.fromCharCode.apply(null, new Uint8Array(buf));
-  };
-
-  const str2ab = str => {
-    var buf = new ArrayBuffer(str.length);
-    var bufView = new Uint8Array(buf);
-    for (var i=0, strLen=str.length; i < strLen; i++) {
-      bufView[i] = str.charCodeAt(i);
-    }
-    return buf;
   };
 
   const loadKeyFromFile = (event, fileSelected) => { 
@@ -181,7 +188,7 @@
 
   /*
     Decrypt the message using the secret key.
-    If the ciphertext was decrypted successfully,
+    If the encrypted was decrypted successfully,
     update the "decryptedValue" box with the decrypted value.
     If there was an error decrypting,
     update the "decryptedValue" box with an error message.
@@ -194,20 +201,20 @@
       return;
     }
 
-    await calcMessageData(passphraseValue)
+    await calcMessageData(passphraseValue);
 
     const decryptedValue = document.querySelector(".decrypt .decrypted-value");
     decryptedValue.textContent = "";
     decryptedValue.classList.remove("error");
 
-    let encryptedValue = document.querySelector("#encrypted-message").value;
+    const encryptedValue = document.querySelector("#encrypted-message").value;
 
     // Convert the encrypted message from text to ArrayBuffer
-    let encryptedBuf = str2ab(new TextDecoder().decode(Uint8Array.from(encryptedValue.split(',').map(Number)))); 
-    let key = await getDerivedKey(message.secretKey, message.salt);
+    const encryptedBuf = hexStringToArrayBuffer(encryptedValue);
+    const key = await getDerivedKey(message.secretKey, message.salt);
 
     try {
-      let decrypted = await window.crypto.subtle.decrypt(
+      const decrypted = await window.crypto.subtle.decrypt(
         {
           name: "AES-GCM",
           iv: message.iv,
@@ -217,7 +224,7 @@
         encryptedBuf
       );
 
-      let dec = new TextDecoder();
+      const dec = new TextDecoder();
       decryptedValue.classList.add("fade-in");
       decryptedValue.addEventListener("animationend", () => {
         decryptedValue.classList.remove("fade-in");
