@@ -43,6 +43,7 @@ h6 {
 
 input[type="button"] {
     width: 5rem;
+    height: 22px;
 }
 
 .encrypted-value, .decrypted-value {
@@ -66,7 +67,7 @@ h1 {
     grid-row: 1;
 }
 
-.examples {
+.working-section {
     grid-column: 1;
     grid-row: 2;
 }
@@ -80,7 +81,7 @@ h1 {
 .derive-key-controls {
     display: grid;
     grid-template-columns: 1fr 5rem;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
 }
 
 .message-passphrase {
@@ -125,6 +126,97 @@ h1 {
     grid-column-start: 3;
     grid-row-start: 2;
     margin-left: -.25rem;
+}
+
+.wrapkey > * {
+    margin: .5rem 0;
+}
+
+/* .wrapkey {
+    display: grid;
+    grid-template-columns: 1fr 5rem;
+    grid-template-rows: 1fr 1fr 1fr;
+} */
+/* .wrapkey-section > * {
+} */
+
+/* .unwrap-checkbox-section {
+} */
+
+.wrapkey-controls {
+    display: grid;
+    grid-template-columns: 1fr 5rem;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.wrapkey-password-div {
+    grid-column-start: 1;
+    grid-row-start: 1;
+}
+
+.wrapkey-button {
+    grid-column-start: 2;
+    grid-row-start: 1;
+}
+
+.wrapped-save-button {
+    grid-column-start: 3;
+    grid-row-start: 1;
+    margin-left: .5rem;
+}
+
+.wrapped {
+    grid-column-start: 1;
+    grid-row-start: 2;
+    max-block-size: 1rem;
+    margin-top: .6rem;
+}
+
+.wrapped-value, .unwrapped-value {
+    padding-left: .5rem;
+    font-family: monospace;
+}
+
+.unwrapkey-controls {
+    grid-column-start: 2;
+    grid-row-start: 1;
+}
+
+.unwrapkey-password-div {
+    grid-column-start: 1;
+    grid-row-start: 1;
+}
+
+.wrapper-message-control {
+    grid-column-start: 1;
+    grid-row-start: 2;
+    margin-top: .1rem;
+}
+
+.unwrapper-message-control {
+    grid-column-start: 1;
+    grid-row-start: 2;
+    margin-top: .5rem;
+}
+
+.unwrapkey-button {
+    grid-column-start: 3;
+    grid-row-start: 2;
+    margin-top: .5rem;
+    margin-left: -.25rem;
+}
+
+.unwrap-load-button {
+    grid-column-start: 2;
+    grid-row-start: 2;
+    margin-top: .5rem;
+}
+
+.unwrapped {
+    grid-column-start: 1;
+    grid-row-start: 3;
+    max-block-size: 1rem;
+    margin-top: .6rem;
 }
 
 /* Animate output display */
