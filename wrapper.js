@@ -211,7 +211,7 @@
 
     const unwrappingKey = await getDerivedKey(message.secretKey, message.salt);
 
-    const unwrappedValue = document.querySelector(".decrypt .wrapkey .unwrapped .unwrapped-value");
+    const unwrappedValue = document.querySelector(".decrypt .unwrapkey .unwrapped .unwrapped-value");
     unwrappedValue.textContent = "";
     unwrappedValue.classList.remove("error");
 
