@@ -145,6 +145,9 @@
     encryptedValue.textContent = `${encryptedMessage.substring(0, 12)}...[${message.encrypted.byteLength} bytes total]`;
     
     document.querySelector("#encrypted-message").value = encryptedMessage;
+
+    const scrambleKeyCheckbox = document.querySelector(".encrypt #scramble-checkbox");
+    scrambleKeyCheckbox.disabled = false;
   }
 
   const saveToFile = () => {
@@ -153,7 +156,7 @@
       const encrypted = document.querySelector("#encrypted-message");
       saveOrOpenBlob(new Blob([encrypted.value]), filename || "encrypted.txt");
     } else {
-      alert("Please, encrypt the message first...")
+      alert("Please, encrypt the seed first...")
     }
   };
 
@@ -245,29 +248,30 @@
   }
 
   function seedAliasMain() {
-    let encryptButton = document.querySelector(".encrypt .encrypt-button");
+    const encryptButton = document.querySelector(".encrypt .encrypt-button");
     encryptButton.addEventListener("click", async () => {
       await encrypt();
     });
 
-    let saveButton = document.querySelector(".encrypt .save-button");
+    const saveButton = document.querySelector(".encrypt .save-button");
     saveButton.addEventListener("click", () => {
       saveToFile();
     });
 
-    let decryptButton = document.querySelector(".decrypt .decrypt-button");
+    const decryptButton = document.querySelector(".decrypt .decrypt-button");
     decryptButton.addEventListener("click", async () => {
       await decrypt();
     });
 
     if (window.File && window.FileReader && window.FileList && window.Blob) {
-      let fileSelected = document.querySelector(".decrypt .load-button");
+      const fileSelected = document.querySelector(".decrypt .load-button");
       fileSelected.addEventListener('change', (e) => { 
         loadKeyFromFile(e, fileSelected);
       }, false);
     } else { 
       alert("Files are not supported"); 
     } 
+
   }
 
   seedAliasMain();
