@@ -10,29 +10,39 @@
 <body>
   <main>
     <h1>Seed alias generator</h1>
-    <h6>v.0.3.0</h6>
+    <h6>v.0.4.0</h6>
 
     <section class="description">
       <p>
-        Use this site to create an alias for your seed.
-        Define a passphrase which are familiar and can always remember.
+        Use this web page to create an alias for your seed.
+        Define a passphrase which you are familiar and can always remember.
         The passphrase will be used the encrypt and decrypt your seed.
+        Optionally, you can scramble your encrypted seed to get higher protection.
       </p>
       <p>
         After seed encryption, you should save the encrypted seed to a file and store in a secured environment. Never
         store it online or send it over wire.
       </p>
       <p>
-        If you are planning save it online or send it over wire, it is recommend that you wrap it first and save it to
-        another file.
+        If you are planning save it online or send it over wire, it is recommend that you scramble it first before saving it to a file.
+        Scramble your encrypted seed providing a pair position of bytes for a swap operation.<br>
+        After scramble your encrypted seed and save it to a file you may compress it with a password generating a binary file, achieving higher protection.
+        <p>Example of scramble codes:</p>
+        <ul>
+          <li>2107, will swap the bytes at positions 21 and 7</li>
+          <li>21071312, will swap the bytes at positions 21 and 7. And after will swap bytes at positions 13 and 12</li>
+        </ul>
+        OBS: Positions are <b>not</b> <i>zero based</i> like <i>array index</i>. They are one (1) based.
+        <br>
+        OBS: You can provide as many position pairs as you want.
+        <br>
+        OBS: Position value less than 10 must be prefixed with digit zero (0). Ex: 09.
+        <br>
+        OBS: Positions must not be greater than encrypted seed bytes lenght.
       </p>
       <p>
         OBS: You should keep the passphrase secret, it's recomended that you do not write it down.
         It should be a sentense that you will never forget, so keep in your mind.
-      </p>
-      <p>
-        OBS: To reforce the strength of your encrypted seed you could change one or more digits of the encrypted seed.
-        Just remember to revert these changes before decryption attempt, otherwise it will fail.
       </p>
 
       <p style="color: darkred; font-size: small;">
@@ -62,18 +72,18 @@
           <input class="encrypt-button" type="button" value="Encrypt" />
           <input class="save-button" type="button" value="Save" />
         </section>
-        <section class="wrapkey">
-          <label for="wrapkey-checkbox">Wrap your encrypted seed?</label>
-          <input type="checkbox" id="wrapkey-checkbox" name="wrapkey-checkbox" value="" />
-          <section class="wrapkey-controls" style="display: none;">
-            <div class="wrapkey-password-div">
-              <label for="wrapkey-password">Wrapper password:</label>
-              <input type="password" id="wrapkey-password" name="password" size="38" value="" />
+        <section class="scramble">
+          <label for="scramble-checkbox">Scramble your encrypted seed?</label>
+          <input type="checkbox" id="scramble-checkbox" name="scramble-checkbox" value="" />
+          <section class="scramble-controls" style="display: none;">
+            <div class="scramble-code-div">
+              <label for="scramblecode">Scramble code:</label>
+              <input type="password" id="scramblecode" name="scramblecode" size="38" value="" placeholder="Two (or more) pair of byte positions to be swapped"/>
             </div>
-            <input class="wrapkey-button" type="button" value="Wrap" />
-            <input class="wrapped-save-button" type="button" value="Save" />
-            <div class="wrapped">
-              Wrapped encrypted seed:<span class="wrapped-value"></span>
+            <input class="scramble-button" type="button" value="Scramble" />
+            <input class="scrambled-save-button" type="button" value="Save" />
+            <div class="scrambled">
+              Scrambled encrypted seed:<span class="scrambled-value"></span>
             </div>
           </section>
         </section>
@@ -81,22 +91,22 @@
 
       <section class="derive-key decrypt">
         <h2>Decrypt</h2>
-        <section class="unwrapkey">
-          <label for="wrapkey-checkbox">Unwrap wrapped encrypted seed?</label>
-          <input type="checkbox" id="wrapkey-checkbox" name="wrapkey-checkbox" value="" />
-          <section class="wrapkey-controls" style="display: none;">
-            <div class="unwrapkey-password-div">
-              <label for="unwrapkey-password">Unwrapper password:</label>
-              <input type="password" id="unwrapkey-password" name="password" size="30" value="" />
+        <section class="unscramble">
+          <label for="scramble-checkbox">Unscramble scrambled encrypted seed?</label>
+          <input type="checkbox" id="scramble-checkbox" name="scramble-checkbox" value="" />
+          <section class="scramble-controls" style="display: none;">
+            <div class="unscrambled-message-control">
+              <label for="scrambled-encrypted-message">Scrambled encrypted seed:</label>
+              <input type="text" id="scrambled-encrypted-message" name="scrambled-encrypted-message" size="40" value=""/>
             </div>
-            <div class="unwrapper-message-control">
-              <label for="wrapped-encrypted-message">Wrapped encrypted seed:</label>
-              <input type="text" id="wrapped-encrypted-message" name="wrapped-encrypted-message" size="40" value="" />
+            <input class="unscramble-load-button" type="file" label="asdasdasd"/>
+            <div class="unscramble-code-div">
+              <label for="unscramblecode">Unscramble Code:</label>
+              <input type="password" id="unscramblecode" name="unscramblecode" size="30" value="" placeholder="Two (or more) pair of byte poditions to unscramble"/>
             </div>
-            <input class="unwrap-load-button" type="file" />
-            <input class="unwrapkey-button" type="button" value="Unwrap" />
-            <div class="unwrapped">
-              Unwrapped encrypted seed:<span class="unwrapped-value"></span>
+            <input class="unscramble-button" type="button" value="Unscramble" />
+            <div class="unscrambled">
+              Unscrambled encrypted seed:<span class="unscrambled-value"></span>
             </div>
           </section>
         </section>
@@ -121,6 +131,5 @@
   </main>
 </body>
 <script src="crypto.js"></script>
-<script src="wrapper.js"></script>
-
+<script src="scramble.js"></script>
 </html>

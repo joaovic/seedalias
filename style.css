@@ -128,91 +128,93 @@ h1 {
     margin-left: -.25rem;
 }
 
-.wrapkey > * {
+.scramble > * {
     margin: .5rem 0;
 }
 
-/* .wrapkey {
+/* .scramble {
     display: grid;
     grid-template-columns: 1fr 5rem;
     grid-template-rows: 1fr 1fr 1fr;
 } */
-/* .wrapkey-section > * {
+/* .scramble-section > * {
 } */
 
-/* .unwrap-checkbox-section {
+/* .unscramble-checkbox-section {
 } */
 
-.wrapkey-controls {
+.scramble-controls {
     display: grid;
     grid-template-columns: 1fr 5rem;
     grid-template-rows: 1fr 1fr 1fr;
 }
 
-.wrapkey-password-div {
+.scramble-code-div {
     grid-column-start: 1;
     grid-row-start: 1;
 }
 
-.wrapkey-button {
+.scramble-button {
     grid-column-start: 2;
     grid-row-start: 1;
 }
 
-.wrapped-save-button {
+.scrambled-save-button {
     grid-column-start: 3;
     grid-row-start: 1;
     margin-left: .5rem;
 }
 
-.wrapped {
+.scrambled {
     grid-column-start: 1;
     grid-row-start: 2;
     max-block-size: 1rem;
     margin-top: .6rem;
 }
 
-.wrapped-value, .unwrapped-value {
+.scrambled-value, .unscrambled-value {
     padding-left: .5rem;
     font-family: monospace;
 }
 
-.unwrapkey-controls {
+.unscramble-controls {
     grid-column-start: 2;
     grid-row-start: 1;
 }
 
-.unwrapkey-password-div {
+.unscramble-code-div {
     grid-column-start: 1;
-    grid-row-start: 1;
+    grid-row-start: 2;
+    margin-top: .7rem;
 }
 
-.wrapper-message-control {
+.scrambled-message-control {
     grid-column-start: 1;
     grid-row-start: 2;
     margin-top: .1rem;
 }
 
-.unwrapper-message-control {
+.unscrambled-message-control {
     grid-column-start: 1;
-    grid-row-start: 2;
-    margin-top: .5rem;
+    grid-row-start: 1;
+    margin-top: .7rem;
 }
 
-.unwrapkey-button {
-    grid-column-start: 3;
-    grid-row-start: 2;
-    margin-top: .5rem;
-    margin-left: -.25rem;
-}
-
-.unwrap-load-button {
+.unscramble-button {
     grid-column-start: 2;
     grid-row-start: 2;
     margin-top: .5rem;
+    /* margin-left: -.25rem; */
 }
 
-.unwrapped {
+.unscramble-load-button {
+    grid-column-start: 2;
+    grid-row-start: 1;
+    margin-top: .7rem;
+    width: 4.4rem;
+}
+
+.unscrambled {
     grid-column-start: 1;
     grid-row-start: 3;
     max-block-size: 1rem;

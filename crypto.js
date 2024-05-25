@@ -145,6 +145,9 @@
     encryptedValue.textContent = `${encryptedMessage.substring(0, 12)}...[${message.encrypted.byteLength} bytes total]`;
     
     document.querySelector("#encrypted-message").value = encryptedMessage;
+
+    const scrambleKeyCheckbox = document.querySelector(".encrypt #scramble-checkbox");
+    scrambleKeyCheckbox.disabled = false;
   }
 
   const saveToFile = () => {
@@ -153,7 +156,7 @@
       const encrypted = document.querySelector("#encrypted-message");
       saveOrOpenBlob(new Blob([encrypted.value]), filename || "encrypted.txt");
     } else {
-      alert("Please, encrypt the message first...")
+      alert("Please, encrypt the seed first...")
     }
   };
 
