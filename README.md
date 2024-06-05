@@ -10,7 +10,7 @@ After seed encryptation, you can scramble and save the encrypted seeds to a file
 OBS: You should keep the passphrase secret, it's recomended that you do not write it down. 
 It should be a sentense that you will never forget, so keep in your mind.
 
-OBS2: To strength of your encrypted seed you can use the scramble feature to swap one or more bytes of the encrypted seed.
+OBS2: To strength your encrypted seed you can use the scramble feature to swap one or more bytes of the encrypted seed.
 Just provide a number refering to the position of the byte pairs to be swapped. Example: 
 The number 1218 will swap the byte from position 12 by the byte from position 18.
 You can provide a bigger number to swap more than one byte pair at time.
