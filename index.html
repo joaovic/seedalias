@@ -10,7 +10,7 @@
 <body>
   <main>
     <h1>Seed alias generator</h1>
-    <h6>v.0.4.0</h6>
+    <h6>v.0.4.1</h6>
 
     <section class="description">
       <p>
@@ -23,23 +23,26 @@
         After seed encryption, you should save the encrypted seed to a file and store in a secured environment. Never
         store it online or send it over wire.
       </p>
+
       <p>
         If you are planning save it online or send it over wire, it is recommend that you scramble it first before saving it to a file.
         Scramble your encrypted seed providing a pair position of bytes for a swap operation.<br>
         After scramble your encrypted seed and save it to a file you may compress it with a password generating a binary file, achieving higher protection.
-        <p>Example of scramble codes:</p>
-        <ul>
-          <li>2107, will swap the bytes at positions 21 and 7</li>
-          <li>21071312, will swap the bytes at positions 21 and 7. And after will swap bytes at positions 13 and 12</li>
-        </ul>
-        OBS: Positions are <b>not</b> <i>zero based</i> like <i>array index</i>. They are one (1) based.
-        <br>
-        OBS: You can provide as many position pairs as you want.
-        <br>
-        OBS: Position value less than 10 must be prefixed with digit zero (0). Ex: 09.
-        <br>
-        OBS: Positions must not be greater than encrypted seed bytes lenght.
       </p>
+      <p>
+        Example of scramble codes:
+      </p>
+      <ul>
+        <li>2107, will swap the bytes at positions 21 and 7</li>
+        <li>21071312, will swap the bytes at positions 21 and 7. And after will swap bytes at positions 13 and 12</li>
+      </ul>
+      OBS: Positions are <b>not</b> <i>zero based</i> like <i>array index</i>. They are one (1) based.
+      <br>
+      OBS: You can provide as many position pairs as you want.
+      <br>
+      OBS: Position value less than 10 must be prefixed with digit zero (0). Ex: 09.
+      <br>
+      OBS: Positions must not be greater than encrypted seed bytes lenght.
       <p>
         OBS: You should keep the passphrase secret, it's recomended that you do not write it down.
         It should be a sentense that you will never forget, so keep in your mind.

@@ -11,38 +11,32 @@
   const scramble = (code) => {
     const encrypted = document.querySelector("#encrypted-message").value;
     const encryptedBytes = encrypted.match(/.{1,2}/g);
-    const bytePairs = code.match(/.{1,2}/g).map(i => parseInt(i) - 1);
+    const indexByteArr = code.match(/.{1,2}/g).map(i => parseInt(i) - 1);
 
-    const operations =  bytePairs.length / 2;
-
-    for (i = 0; i < operations; i += 2) {
-      const curr = encryptedBytes[bytePairs[i]];
-      const next = encryptedBytes[bytePairs[i+1]];
-
-      encryptedBytes[bytePairs[i]] = next;
-      encryptedBytes[bytePairs[i+1]] = curr;
+    for (i = 0; i < indexByteArr.length; i+=2) {
+      const indexPair = indexByteArr.slice(i, i+2);
+      const curr = encryptedBytes[indexPair[0]];
+      const next = encryptedBytes[indexPair[1]];
+      encryptedBytes[indexPair[0]] = next;
+      encryptedBytes[indexPair[1]] = curr;
     }
 
     const scrambledValue = document.querySelector(".scrambled .scrambled-value");
     scrambledValue.textContent = `${encryptedBytes.join('').substring(0, 12)}...[${encryptedBytes.length} bytes total]`;
     message.scrambled = encryptedBytes.join('');
-
-    // alert(encryptedBytes.join(''));
   }
 
   const unscramble = (code) => {
     const scrambled = document.querySelector("#scrambled-encrypted-message").value;
     const scrambledBytes = scrambled.match(/.{1,2}/g);
-    const bytePairs = code.match(/.{1,2}/g).map(i => parseInt(i) - 1).reverse();
+    const indexByteArr = code.match(/.{1,2}/g).map(i => parseInt(i) - 1);
 
-    const operations =  bytePairs.length / 2;
-
-    for (i = 0; i < operations; i += 2) {
-      const curr = scrambledBytes[bytePairs[i]];
-      const next = scrambledBytes[bytePairs[i+1]];
-
-      scrambledBytes[bytePairs[i]] = next;
-      scrambledBytes[bytePairs[i+1]] = curr;
+    for (i = indexByteArr.length-1; i >= 0; i-=2) {
+      const indexPair = indexByteArr.slice(i-1, i+1);
+      const curr = scrambledBytes[indexPair[0]];
+      const next = scrambledBytes[indexPair[1]];
+      scrambledBytes[indexPair[0]] = next;
+      scrambledBytes[indexPair[1]] = curr;
     }
 
     const unscrambledValue = document.querySelector(".unscrambled .unscrambled-value");
