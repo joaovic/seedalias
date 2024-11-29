@@ -9,7 +9,15 @@ html,body {
     line-height: 1.2rem;
 }
 
-/* Layout and styles */
+body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+    flex-direction: column;
+}
 
 h1 {
     color: green;
@@ -37,7 +45,11 @@ h6 {
     margin-bottom: 2rem;
 }
 
-.derive-key-controls > * {
+.encrypt-derive-key-controls > * {
+    margin: .5rem 0;
+}
+
+.decrypt-derive-key-controls > * {
     margin: .5rem 0;
 }
 
@@ -49,16 +61,17 @@ input[type="button"] {
 .encrypted-value, .decrypted-value {
     padding-left: .5rem;
     font-family: monospace;
+    font-size: medium;
+    font-style: italic;    
 }
 
 .error {
   color: red;
 }
 
-/* Whole page grid */
 main {
     display: grid;
-    grid-template-columns: 50rem 1fr;
+    grid-template-columns: 50rem;
     grid-template-rows: 5rem 1fr;
 }
 
@@ -67,21 +80,32 @@ h1 {
     grid-row: 1;
 }
 
+h6 {
+    grid-column: 1/2;
+    grid-row: 1;
+    font-style: italic;
+}
+
 .working-section {
     grid-column: 1;
     grid-row: 2;
 }
 
 .description {
-    grid-column: 2;
-    grid-row: 2;
+    grid-column: 1;
+    grid-row: 3;
 }
 
-/* derive-key controls grid */
-.derive-key-controls {
+.encrypt-derive-key-controls {
     display: grid;
-    grid-template-columns: 1fr 5rem;
-    grid-template-rows: 1fr 1fr 1fr 0fr 0.5fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+
+.decrypt-derive-key-controls {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
 }
 
 .message-passphrase {
@@ -96,79 +120,66 @@ h1 {
 
 .encrypted {
     grid-column-start: 1;
-    grid-row-start: 3;
+    grid-row-start: 4;
     max-block-size: 1rem;
+    margin-top: 1rem;
 }
 
 .decrypted {
     grid-column-start: 1;
-    grid-row-start: 3;
+    grid-row-start: 6;
     max-block-size: 1rem;
 }
 
-.save-button {
-    grid-column-start: 3;
-    grid-row-start: 2;
-    margin-left: .5rem;
-}
-
 .encrypt-button {
-    grid-column-start: 2;
-    grid-row-start: 2;
+    grid-column-start: 1;
+    grid-row-start: 3;
 }
 
-.load-button {
-    grid-column-start: 2;
-    grid-row-start: 2;
+.save-button {
+    grid-column-start: 1;
+    grid-row-start: 3;
+    margin-left: 6rem;
 }
 
 .decrypt-button {
     grid-column-start: 3;
     grid-row-start: 2;
-    margin-left: -.25rem;
+    margin-left: 0rem;
 }
 
 .scramble > * {
-    margin: .5rem 0;
-}
-
-/* .scramble {
-    display: grid;
-    grid-template-columns: 1fr 5rem;
-    grid-template-rows: 1fr 1fr 1fr;
-} */
-/* .scramble-section > * {
-} */
-
-/* .unscramble-checkbox-section {
-} */
-
-.scramble-controls {
-    display: grid;
-    grid-template-columns: 1fr 5rem;
-    grid-template-rows: 1fr 1fr 1fr;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .scramble-code-div {
     grid-column-start: 1;
-    grid-row-start: 1;
+    grid-row-start: 3;
+} 
+
+.scramble-code-div input {
+    width: 47.5rem;
+    height: 2em;
+    padding: 1em;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
 }
 
 .scramble-button {
-    grid-column-start: 2;
-    grid-row-start: 1;
+    margin-left: 0rem;
+    margin-top: 1rem;
 }
 
 .scrambled-save-button {
-    grid-column-start: 3;
-    grid-row-start: 1;
-    margin-left: .5rem;
+    margin-left: 0.7rem;
+    margin-top: -1.4rem;
 }
 
 .scrambled {
-    grid-column-start: 1;
-    grid-row-start: 2;
-    max-block-size: 1rem;
     margin-top: .6rem;
 }
 
@@ -188,6 +199,28 @@ h1 {
     margin-top: .7rem;
 }
 
+.unscrambled-message-control input {
+    width: 47.5rem;
+    height: 2em;
+    padding: 1em;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.unscramble-code-div input {
+    width: 47.5rem;
+    height: 2em;
+    padding: 1em;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
 .scrambled-message-control {
     grid-column-start: 1;
     grid-row-start: 2;
@@ -200,18 +233,18 @@ h1 {
     margin-top: .7rem;
 }
 
+.unscramble {
+    margin-top: 1rem;    
+}
+
 .unscramble-button {
     grid-column-start: 2;
     grid-row-start: 2;
     margin-top: .5rem;
-    /* margin-left: -.25rem; */
 }
 
 .unscramble-load-button {
-    grid-column-start: 2;
-    grid-row-start: 1;
     margin-top: .7rem;
-    width: 4.4rem;
 }
 
 .unscrambled {
@@ -219,6 +252,81 @@ h1 {
     grid-row-start: 3;
     max-block-size: 1rem;
     margin-top: .6rem;
+}
+
+.message-control input {
+    width: 47.5rem;
+    height: 2em;
+    padding: 1em;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.encrypt-passphrase-div {
+    position: relative;
+}
+
+body .encrypt-passphrase-div input {
+    width: 53em;
+    height: 2em;
+    padding: 1em;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+body .encrypt-passphrase-div input::placeholder {
+    color: #000;
+    font-weight: regular;
+}
+
+body .encrypt-passphrase-div .toggler {
+    position: relative;
+    right: -735px;
+    top: -23%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.decrypt-passphrase-div {
+    position: relative;
+    grid-column-start: 1;
+    grid-row-start: 4;
+}
+
+body .decrypt-passphrase-div input {
+    width: 53em;
+    height: 2em;
+    padding: 1em;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+body .decrypt-passphrase-div input::placeholder {
+    color: #000;
+    font-weight: regular;
+}
+
+body .decrypt-passphrase-div .toggler {
+    position: relative;
+    right: -735px;
+    top: -23%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+body .decrypt-button-div {
+    position: relative;
+    grid-column-start: 1;
+    grid-row-start: 5;
 }
 
 /* Animate output display */

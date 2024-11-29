@@ -122,7 +122,7 @@
     scrambleKeyCheckbox.checked = false;
     scrambleKeyCheckbox.addEventListener("click", () => {
       const scrambleKeyCtrl = document.querySelector(".encrypt .scramble-controls");
-      scrambleKeyCtrl.style.display = scrambleKeyCheckbox.checked ? "grid" : "none";
+      scrambleKeyCtrl.style.display = scrambleKeyCheckbox.checked ? "block" : "none";
     });
 
     const scrambleButton = document.querySelector(".scramble .scramble-button");
@@ -145,8 +145,14 @@
     unscrambleKeyCheckbox.disabled = false;
     unscrambleKeyCheckbox.checked = false;
     unscrambleKeyCheckbox.addEventListener("click", () => {
-      const unscrambleKeyCtrl = document.querySelector(".decrypt .scramble-controls");
-      unscrambleKeyCtrl.style.display = unscrambleKeyCheckbox.checked ? "grid" : "none";
+      const decryptButton = document.querySelector(".decrypt .decrypt-button");
+      decryptButton.style.marginLeft = unscrambleKeyCheckbox.checked ? "1rem" : "0rem";
+      const unscrambleCtrl = document.querySelector(".decrypt .scramble-controls");
+      unscrambleCtrl.style.display = unscrambleKeyCheckbox.checked ? "initial" : "none";      
+      const loadButton = document.querySelector(".decrypt .load-button");
+      loadButton.style.display = unscrambleKeyCheckbox.checked ? "none" : "initial";
+      const messageControl = document.querySelector(".decrypt .message-control");
+      messageControl.style.display = unscrambleKeyCheckbox.checked ? "none" : "initial";
     });
 
     const unscrambleButton = document.querySelector(".decrypt .unscramble-button");

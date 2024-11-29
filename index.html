@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
   <meta charset="utf-8" />
   <title>Seed alias generator</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-
 <body>
   <main>
     <h1>Seed alias generator</h1>
-    <h6>v.0.4.1</h6>
+    <h6>v.0.5.0</h6>
 
     <section class="description">
       <p>
@@ -60,74 +59,79 @@
     <section class="working-section">
       <section class="derive-key encrypt">
         <h2>Encrypt</h2>
-        <section class="derive-key-controls">
-          <div class="message-passphrase">
+        <section class="encrypt-derive-key-controls">
+          <div class="encrypt-passphrase-div">
             <label for="encrypt-passphrase">Passphrase:</label>
-            <input type="text" id="encrypt-passphrase" name="passphrase" size="45" value="" />
+            <input type="password" id="encrypt-passphrase" size="45" value="" placeholder="Enter Passphrase"/>
+            <span><i id="encrypt-toggler" class="far fa-eye toggler"></i></span>
           </div>
           <div class="message-control">
             <label for="seed">Seed to encrypt:</label>
-            <input type="text" id="seed" name="message" size="40" value="" />
-          </div>
-          <div class="encrypted">
-            Encrypted seed:<span class="encrypted-value"></span>
+            <input type="text" id="seed" name="message" size="50" value="" />
           </div>
           <input class="encrypt-button" type="button" value="Encrypt" />
           <input class="save-button" type="button" value="Save" />
-        </section>
-        <section class="scramble">
-          <label for="scramble-checkbox">Scramble your encrypted seed?</label>
-          <input type="checkbox" id="scramble-checkbox" name="scramble-checkbox" value="" />
-          <section class="scramble-controls" style="display: none;">
-            <div class="scramble-code-div">
-              <label for="scramblecode">Scramble code:</label>
-              <input type="password" id="scramblecode" name="scramblecode" size="38" value="" placeholder="Two (or more) pair of byte positions to be swapped"/>
+          <div class="encrypted">
+            Encrypted seed:<span class="encrypted-value"></span>
+          </div>
+          <div class="scramble">
+            <label for="scramble-checkbox">Scramble your encrypted seed?</label>
+            <input type="checkbox" id="scramble-checkbox" name="scramble-checkbox" value="" />
+            <div class="scramble-controls" style="display: none;">
+              <div class="scramble-code-div">
+                <label for="scramblecode">Scramble code:</label>
+                <input type="password" id="scramblecode" name="scramblecode" size="38" value="" placeholder="Two (or more) pair of byte positions to be swapped"/>
+              </div>
+              <input class="scramble-button" type="button" value="Scramble" />
+              <input class="scrambled-save-button" type="button" value="Save" />
+              <div class="scrambled">
+                Scrambled encrypted seed:<span class="scrambled-value"></span>
+              </div>
             </div>
-            <input class="scramble-button" type="button" value="Scramble" />
-            <input class="scrambled-save-button" type="button" value="Save" />
-            <div class="scrambled">
-              Scrambled encrypted seed:<span class="scrambled-value"></span>
-            </div>
-          </section>
+          </div>
         </section>
       </section>
 
       <section class="derive-key decrypt">
         <h2>Decrypt</h2>
-        <section class="unscramble">
-          <label for="scramble-checkbox">Unscramble scrambled encrypted seed?</label>
-          <input type="checkbox" id="scramble-checkbox" name="scramble-checkbox" value="" />
-          <section class="scramble-controls" style="display: none;">
-            <div class="unscrambled-message-control">
-              <label for="scrambled-encrypted-message">Scrambled encrypted seed:</label>
-              <input type="text" id="scrambled-encrypted-message" name="scrambled-encrypted-message" size="40" value=""/>
+        <section class="decrypt-derive-key-controls">
+          <div class="unscramble">
+            <label for="scramble-checkbox">Unscramble scrambled encrypted seed?</label>
+            <input type="checkbox" id="scramble-checkbox" name="scramble-checkbox" value="" />
+            <div class="scramble-controls" style="display: none;">
+              <div class="unscrambled-message-control">
+                <label for="scrambled-encrypted-message">Scrambled encrypted seed:</label>
+                <input type="text" id="scrambled-encrypted-message" name="scrambled-encrypted-message" size="40" value=""/>
+              </div>
+              <input class="unscramble-load-button" type="file"/>
+              <div class="unscramble-code-div">
+                <label for="unscramblecode">Unscramble Code:</label>
+                <input type="password" id="unscramblecode" name="unscramblecode" size="30" value="" placeholder="Two (or more) pair of byte poditions to unscramble"/>
+              </div>
+              <input class="unscramble-button" type="button" value="Unscramble" />
+              <div class="unscrambled">
+                Unscrambled encrypted seed:<span class="unscrambled-value"></span>
+              </div>
             </div>
-            <input class="unscramble-load-button" type="file" label="asdasdasd"/>
-            <div class="unscramble-code-div">
-              <label for="unscramblecode">Unscramble Code:</label>
-              <input type="password" id="unscramblecode" name="unscramblecode" size="30" value="" placeholder="Two (or more) pair of byte poditions to unscramble"/>
-            </div>
-            <input class="unscramble-button" type="button" value="Unscramble" />
-            <div class="unscrambled">
-              Unscrambled encrypted seed:<span class="unscrambled-value"></span>
-            </div>
-          </section>
-        </section>
-        <section class="derive-key-controls" style="margin-top: 1rem;">
-          <div class="message-passphrase">
-            <label for="decrypt-passphrase">Passphrase:</label>
-            <input type="text" id="decrypt-passphrase" name="passphrase" size="45" value="" />
           </div>
           <div class="message-control">
             <label for="encrypted-message">Encrypted seed:</label>
             <input type="text" id="encrypted-message" name="encrypted-message" size="40" value="" />
           </div>
+          <div>
+            <input class="load-button" type="file" />
+          </div>
+          <div class="decrypt-passphrase-div">
+            <label for="decrypt-passphrase">Passphrase:</label>
+            <input type="password" id="decrypt-passphrase" size="45" value="" placeholder="Enter Passphrase" />
+            <span><i id="decrypt-toggler"class="far fa-eye toggler"></i></span>
+          </div>
+          <div class="decrypt-button-div">
+            <input class="decrypt-button" type="button" value="Decrypt" />
+          </div>
           <div class="decrypted">
             Decrypted seed:<span class="decrypted-value"></span>
           </div>
-
-          <input class="load-button" type="file" />
-          <input class="decrypt-button" type="button" value="Decrypt" />
         </section>
       </section>
     </section>

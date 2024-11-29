@@ -247,7 +247,27 @@
     message.additionalData = await asUint8Array(passphraseHash.substring(16), 16);
   }
 
+  function addTogglerEventListener(passphrase, toggler) {
+    var passphraseElem = document.getElementById(passphrase);
+    var togglerElem = document.getElementById(toggler);
+    
+    showHidePassphrase = () => {
+      if (passphraseElem.type == 'password') {
+        passphraseElem.setAttribute('type', 'text');
+        togglerElem.classList.add('fa-eye-slash');
+      } else {
+        togglerElem.classList.remove('fa-eye-slash');
+        passphraseElem.setAttribute('type', 'password');
+      }
+    };
+
+    togglerElem.addEventListener('click', showHidePassphrase);
+  }
+
   function seedAliasMain() {
+    addTogglerEventListener('encrypt-passphrase', 'encrypt-toggler');
+    addTogglerEventListener('decrypt-passphrase', 'decrypt-toggler');
+
     const encryptButton = document.querySelector(".encrypt .encrypt-button");
     encryptButton.addEventListener("click", async () => {
       await encrypt();
