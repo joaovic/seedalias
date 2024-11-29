@@ -3,7 +3,7 @@ You don't need to memorize your wallet seeds, just your own created passphrase
 
 Use this site to create an alias for your seed.
 Define a passphrase (alias) which you are familiar and can always remember.
-The passphrase will be used the encrypt and decrypt your seed.
+The passphrase will be used to encrypt and decrypt your seed.
 
 After seed encryptation, you can scramble and save the encrypted seeds to a file and store it safely anywhere.
 
