@@ -54,7 +54,7 @@ h6 {
 }
 
 input[type="button"] {
-    width: 5rem;
+    width: 6rem;
     height: 22px;
 }
 
@@ -128,7 +128,7 @@ h6 {
 .decrypted {
     grid-column-start: 1;
     grid-row-start: 6;
-    max-block-size: 1rem;
+    max-block-size: 2rem;
 }
 
 .encrypt-button {
@@ -139,7 +139,7 @@ h6 {
 .save-button {
     grid-column-start: 1;
     grid-row-start: 3;
-    margin-left: 6rem;
+    margin-left: 7rem;
 }
 
 .decrypt-button {
@@ -290,6 +290,33 @@ body .encrypt-passphrase-div .toggler {
     right: -735px;
     top: -23%;
     transform: translateY(-50%);
+    cursor: pointer;
+}
+
+body .scramble-code-div input::placeholder {
+    color: #000;
+    font-weight: regular;
+}    
+
+body .scramble-code-div .toggler {
+    position: relative;
+    right: -732px;
+    top: -50%;
+    transform: translateY(-150%);
+    cursor: pointer;
+}
+
+
+body .unscramble-code-div input::placeholder {
+    color: #000;
+    font-weight: regular;
+}    
+
+body .unscramble-code-div .toggler {
+    position: relative;
+    right: -732px;
+    top: -50%;
+    transform: translateY(-150%);
     cursor: pointer;
 }
 

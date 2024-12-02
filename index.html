@@ -9,7 +9,7 @@
 <body>
   <main>
     <h1>Seed alias generator</h1>
-    <h6>v.0.5.1</h6>
+    <h6>v.0.5.2</h6>
 
     <section class="description">
       <p>
@@ -31,10 +31,11 @@
         Example of scramble codes:
       </p>
       <ul>
+        <li>0102, will swap the bytes at position 1 and 2, i.e., will swap the first by the second byte</li>
         <li>2107, will swap the bytes at positions 21 and 7</li>
         <li>21071312, will swap the bytes at positions 21 and 7. And after will swap bytes at positions 13 and 12</li>
       </ul>
-      OBS: Positions are <b>not</b> <i>zero based</i> like <i>array index</i>. They are one (1) based.
+      OBS: Positions <b>are not</b> <i>zero based</i> like <i>array index</i>. They <b>are</b> <i>one (1) based</i>.
       <br>
       OBS: You can provide as many position pairs as you want.
       <br>
@@ -79,7 +80,8 @@
             <div class="scramble-controls" style="display: none;">
               <div class="scramble-code-div">
                 <label for="scramblecode">Scramble code:</label>
-                <input type="password" id="scramblecode" name="scramblecode" size="38" value="" placeholder="Two (or more) pair of byte positions to be swapped"/>
+                <input type="password" id="scramblecode" name="scramblecode" size="30" value="" placeholder="Two (or more) pair of byte positions to be swapped"/>
+                <span><i id="scramblecode-toggler" class="far fa-eye toggler"></i></span>
               </div>
               <input class="scramble-button" type="button" value="Scramble" />
               <input class="scrambled-save-button" type="button" value="Save" />
@@ -106,6 +108,7 @@
               <div class="unscramble-code-div">
                 <label for="unscramblecode">Unscramble Code:</label>
                 <input type="password" id="unscramblecode" name="unscramblecode" size="30" value="" placeholder="Two (or more) pair of byte poditions to unscramble"/>
+                <span><i id="unscramblecode-toggler" class="far fa-eye toggler"></i></span>
               </div>
               <input class="unscramble-button" type="button" value="Unscramble" />
               <div class="unscrambled">

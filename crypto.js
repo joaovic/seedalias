@@ -267,6 +267,8 @@
   function seedAliasMain() {
     addTogglerEventListener('encrypt-passphrase', 'encrypt-toggler');
     addTogglerEventListener('decrypt-passphrase', 'decrypt-toggler');
+    addTogglerEventListener('scramblecode', 'scramblecode-toggler');
+    addTogglerEventListener('unscramblecode', 'unscramblecode-toggler');
 
     const encryptButton = document.querySelector(".encrypt .encrypt-button");
     encryptButton.addEventListener("click", async () => {

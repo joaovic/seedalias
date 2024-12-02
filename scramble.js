@@ -146,7 +146,7 @@
     unscrambleKeyCheckbox.checked = false;
     unscrambleKeyCheckbox.addEventListener("click", () => {
       const decryptButton = document.querySelector(".decrypt .decrypt-button");
-      decryptButton.style.marginLeft = unscrambleKeyCheckbox.checked ? "1rem" : "0rem";
+      decryptButton.style.marginLeft = unscrambleKeyCheckbox.checked ? "0rem" : "1rem";
       const unscrambleCtrl = document.querySelector(".decrypt .scramble-controls");
       unscrambleCtrl.style.display = unscrambleKeyCheckbox.checked ? "initial" : "none";      
       const loadButton = document.querySelector(".decrypt .load-button");
