@@ -23,4 +23,4 @@ They will steal your coins.
 
 If you liked it, I would appreciate your support, thanks!
 
-![address: spasticrod78@walletofsatoshi.com](donation-qrcode.jpeg)
+![address: joaovic@blink.sv](donation-qrcode.jpeg)

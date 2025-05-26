@@ -96,7 +96,7 @@
       const bytePairs = code.match(/.{1,2}/g);
       const maxByte = Math.max.apply(0, bytePairs);
       const messageBytes = message.match(/.{1,2}/g);
-      const valid = code.length > 0 && message.length > 0 && messageBytes.length > maxByte && (code.length % 4 == 0);
+      const valid = code.length > 0 && message.length > 0 && messageBytes.length >= maxByte && (code.length % 4 == 0);
   
       input.style = valid ? "color:green" : "color:red";
       button.disabled = !valid
