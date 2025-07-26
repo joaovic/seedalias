@@ -21,9 +21,12 @@
       encryptedBytes[indexPair[1]] = curr;
     }
 
-    const scrambledValue = document.querySelector(".scrambled .scrambled-value");
+    const scrambledValue = document.querySelector(".encrypt .scramble-controls .scrambled-value");
     scrambledValue.textContent = `${encryptedBytes.join('').substring(0, 12)}...[${encryptedBytes.length} bytes total]`;
     message.scrambled = encryptedBytes.join('');
+
+    document.querySelector("#unscramble-checkbox").click();
+    document.querySelector("#scrambled-encrypted-message").value = encryptedBytes.join('');
   }
 
   const unscramble = (code) => {
@@ -39,7 +42,7 @@
       scrambledBytes[indexPair[1]] = curr;
     }
 
-    const unscrambledValue = document.querySelector(".unscrambled .unscrambled-value");
+    const unscrambledValue = document.querySelector(".decrypt .scramble-controls .unscrambled-value");
     unscrambledValue.textContent = `${scrambledBytes.join('').substring(0, 12)}...[${scrambledBytes.length} bytes total]`;
     document.querySelector('#encrypted-message').value = scrambledBytes.join('');
     message.encrypted = scrambledBytes.join('');
@@ -125,7 +128,7 @@
       scrambleKeyCtrl.style.display = scrambleKeyCheckbox.checked ? "block" : "none";
     });
 
-    const scrambleButton = document.querySelector(".scramble .scramble-button");
+    const scrambleButton = document.querySelector(".scramble-controls .scramble-button");
     scrambleButton.disabled = true;
     scrambleButton.addEventListener("click", async () => {
       scramble(scramblecodeInput.value);
@@ -141,7 +144,7 @@
     unscramblecodeInput.addEventListener("keypress", numericValidation);
     unscramblecodeInput.addEventListener("keyup", unscrambleCodeValidation);
 
-    const unscrambleKeyCheckbox = document.querySelector(".decrypt #scramble-checkbox");
+    const unscrambleKeyCheckbox = document.querySelector(".decrypt #unscramble-checkbox");
     unscrambleKeyCheckbox.disabled = false;
     unscrambleKeyCheckbox.checked = false;
     unscrambleKeyCheckbox.addEventListener("click", () => {

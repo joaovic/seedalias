@@ -3,142 +3,199 @@
 <head>
   <meta charset="utf-8" />
   <title>Seed alias generator</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-  <main>
-    <h1>Seed alias generator</h1>
-    <h6>v.0.5.3</h6>
+  <main class="container py-4">
+    <div class="text-center mb-4">
+      <h1 class="text-success">Seed alias generator</h1>
+      <h6 class="text-muted fst-italic">v.0.6.0</h6>
+    </div>
 
-    <section class="description">
-      <p>
-        Use this web page to create an alias for your seed.
-        Define a passphrase which you are familiar and can always remember.
-        The passphrase will be used to encrypt and decrypt your seed.
-        Optionally, you can scramble your encrypted seed to get higher protection.
-      </p>
-      <p>
-        After seed encryption, you should save the encrypted seed to a file and store in a secured environment. Never
-        store it online or send it over wire.
-      </p>
-      <p>
-        If you are planning save it online or send it over wire, it is recommend that you scramble it first before saving it to a file.
-        Scramble your encrypted seed providing a pair of bytes position for the byte swap operation.<br>
-        After scramble your encrypted seed and save it to a file you may compress it with a password generating a binary file, achieving higher protection.
-      </p>
-      <p>
-        Example of scramble codes:
-      </p>
-      <ul>
-        <li>0102, will swap the bytes at position 1 and 2, i.e., will swap the first by the second byte</li>
-        <li>2107, will swap the bytes at positions 21 and 7</li>
-        <li>21071312, will swap the bytes at positions 21 and 7. And after will swap bytes at positions 13 and 12</li>
-      </ul>
-      OBS: Positions <b>are not</b> <i>zero based</i> like <i>array index</i>. They <b>are</b> <i>one (1) based</i>.
-      <br>
-      OBS: You can provide as many position pairs as you want.
-      <br>
-      OBS: Position value less than 10 must be prefixed with digit zero (0). Ex: 09.
-      <br>
-      OBS: Positions must not be greater than encrypted seed bytes lenght.
-      <p>
-        OBS: You should keep the passphrase secret, it's recomended that you do not write it down.
-        It should be a sentense that you will never forget, so keep in your mind.
-      </p>
+    <!-- Collapsible Description Section -->
+    <div class="accordion mb-4" id="descAccordion">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="descHeading">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#descCollapse" aria-expanded="false" aria-controls="descCollapse">
+            Description & Instructions
+          </button>
+        </h2>
+        <div id="descCollapse" class="accordion-collapse collapse" aria-labelledby="descHeading" data-bs-parent="#descAccordion">
+          <div class="accordion-body">
+            <section class="description">
+              <p>
+                Use this web page to create an alias for your seed.
+                Define a passphrase which you are familiar and can always remember.
+                The passphrase will be used to encrypt and decrypt your seed.
+                Optionally, you can scramble your encrypted seed to get higher protection.
+              </p>
+              <p>
+                After seed encryption, you should save the encrypted seed to a file and store in a secured environment. Never
+                store it online or send it over wire.
+              </p>
+              <p>
+                If you are planning save it online or send it over wire, it is recommend that you scramble it first before saving it to a file.
+                Scramble your encrypted seed providing a pair of bytes position for the byte swap operation.<br>
+                After scramble your encrypted seed and save it to a file you may compress it with a password generating a binary file, achieving higher protection.
+              </p>
+              <p>
+                Example of scramble codes:
+              </p>
+              <ul>
+                <li>0102, will swap the bytes at position 1 and 2, i.e., will swap the first by the second byte</li>
+                <li>2107, will swap the bytes at positions 21 and 7</li>
+                <li>21071312, will swap the bytes at positions 21 and 7. And after will swap bytes at positions 13 and 12</li>
+              </ul>
+              OBS: Positions <b>are not</b> <i>zero based</i> like <i>array index</i>. They <b>are</b> <i>one (1) based</i>.
+              <br>
+              OBS: You can provide as many position pairs as you want.
+              <br>
+              OBS: Position value less than 10 must be prefixed with digit zero (0). Ex: 09.
+              <br>
+              OBS: Positions must not be greater than encrypted seed bytes length.
+              <p>
+                OBS: You should keep the passphrase secret, it's recommended that you do not write it down.
+                It should be a sentence that you will never forget, so keep in your mind.
+              </p>
+              <p class="text-danger small">
+                If you share the information generated by this page with anyone, they can steal your assets.
+                Anyone asking you to share your secret passphrase or your seed is a scammer.
+                Do NOT copy & paste information from this page or send it to anyone offering to help you on Twitter, Discord,
+                Telegram, Etherscan, or Line.
+                They will steal your coins.
+              </p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      <p style="color: darkred; font-size: small;">
-        If you share the information generated by this page with anyone, they can steal your assets.
-        Anyone asking you to share your secret passphrase or your seed is a scammer.
-        Do NOT copy & paste information from this page or send it to anyone offering to help you on Twitter, Discord,
-        Telegram, Etherscan, or Line.
-        They will steal your coins.
-      </p>
-    </section>
-
-    <section class="working-section">
-      <section class="derive-key encrypt">
-        <h2>Encrypt</h2>
-        <section class="encrypt-derive-key-controls">
-          <div class="encrypt-passphrase-div">
-            <label for="encrypt-passphrase">Passphrase:</label>
-            <input type="password" id="encrypt-passphrase" size="45" value="" placeholder="Enter Passphrase"/>
-            <span><i id="encrypt-toggler" class="far fa-eye toggler"></i></span>
+    <!-- Main Features: Encrypt / Decrypt -->
+    <div class="row g-4">
+      <!-- Encrypt Section -->
+      <div class="col-md-6 encrypt">
+        <div class="card shadow">
+          <div class="card-header bg-success text-white">
+            <h2 class="h5 mb-0">Encrypt</h2>
           </div>
-          <div class="message-control">
-            <label for="seed">Seed to encrypt:</label>
-            <input type="text" id="seed" name="message" size="50" value="" />
-          </div>
-          <input class="encrypt-button" type="button" value="Encrypt" />
-          <input class="save-button" type="button" value="Save" />
-          <div class="encrypted">
-            Encrypted seed:<span class="encrypted-value"></span>
-          </div>
-          <div class="scramble">
-            <label for="scramble-checkbox">Scramble your encrypted seed?</label>
-            <input type="checkbox" id="scramble-checkbox" name="scramble-checkbox" value="" />
-            <div class="scramble-controls" style="display: none;">
-              <div class="scramble-code-div">
-                <label for="scramblecode">Scramble code:</label>
-                <input type="password" id="scramblecode" name="scramblecode" size="30" value="" placeholder="Two (or more) pair of byte positions to be swapped"/>
-                <span><i id="scramblecode-toggler" class="far fa-eye toggler"></i></span>
+          <div class="card-body">
+            <form class="encrypt-derive-key-controls">
+              <div class="mb-3">
+                <label for="encrypt-passphrase" class="form-label">Passphrase</label>
+                <div class="input-group">
+                  <input type="password" id="encrypt-passphrase" class="form-control" placeholder="Enter Passphrase">
+                  <span class="input-group-text"><i id="encrypt-toggler" class="far fa-eye toggler"></i></span>
+                </div>
               </div>
-              <input class="scramble-button" type="button" value="Scramble" />
-              <input class="scrambled-save-button" type="button" value="Save" />
-              <div class="scrambled">
-                Scrambled encrypted seed:<span class="scrambled-value"></span>
+              <div class="mb-3">
+                <label for="seed" class="form-label">Seed to encrypt</label>
+                <input type="text" id="seed" name="message" class="form-control" placeholder="Enter your seed words">
               </div>
-            </div>
-          </div>
-        </section>
-      </section>
-
-      <section class="derive-key decrypt">
-        <h2>Decrypt</h2>
-        <section class="decrypt-derive-key-controls">
-          <div class="unscramble">
-            <label for="scramble-checkbox">Unscramble scrambled encrypted seed?</label>
-            <input type="checkbox" id="scramble-checkbox" name="scramble-checkbox" value="" />
-            <div class="scramble-controls" style="display: none;">
-              <div class="unscrambled-message-control">
-                <label for="scrambled-encrypted-message">Scrambled encrypted seed:</label>
-                <input type="text" id="scrambled-encrypted-message" name="scrambled-encrypted-message" size="40" value=""/>
+              <div class="mb-3 d-flex gap-2">
+                <button type="button" class="btn btn-success encrypt-button">Encrypt</button>
+                <button type="button" class="btn btn-secondary save-button">Save</button>
               </div>
-              <input class="unscramble-load-button" type="file"/>
-              <div class="unscramble-code-div">
-                <label for="unscramblecode">Unscramble Code:</label>
-                <input type="password" id="unscramblecode" name="unscramblecode" size="30" value="" placeholder="Two (or more) pair of byte poditions to unscramble"/>
-                <span><i id="unscramblecode-toggler" class="far fa-eye toggler"></i></span>
+              <div class="mb-3">
+                <label class="form-label">Encrypted seed:</label>
+                <span class="encrypted-value form-text"></span>
               </div>
-              <input class="unscramble-button" type="button" value="Unscramble" />
-              <div class="unscrambled">
-                Unscrambled encrypted seed:<span class="unscrambled-value"></span>
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="scramble-checkbox" name="scramble-checkbox">
+                <label class="form-check-label" for="scramble-checkbox">
+                  Scramble your encrypted seed?
+                </label>
               </div>
-            </div>
+              <div class="scramble-controls" style="display: none;">
+                <div class="mb-3">
+                  <label for="scramblecode" class="form-label">Scramble code</label>
+                  <div class="input-group">
+                    <input type="password" id="scramblecode" name="scramblecode" class="form-control" placeholder="Byte positions to swap">
+                    <span class="input-group-text"><i id="scramblecode-toggler" class="far fa-eye toggler"></i></span>
+                  </div>
+                </div>
+                <div class="mb-3 d-flex gap-2">
+                  <button type="button" class="btn btn-warning scramble-button">Scramble</button>
+                  <button type="button" class="btn btn-secondary scrambled-save-button">Save</button>
+                </div>
+                <div>
+                  <label class="form-label">Scrambled encrypted seed:</label>
+                  <span class="scrambled-value form-text"></span>
+                </div>
+              </div>
+            </form>
           </div>
-          <div class="message-control">
-            <label for="encrypted-message">Encrypted seed:</label>
-            <input type="text" id="encrypted-message" name="encrypted-message" size="40" value="" />
+        </div>
+      </div>
+      <!-- Decrypt Section -->
+      <div class="col-md-6 decrypt">
+        <div class="card shadow">
+          <div class="card-header bg-primary text-white">
+            <h2 class="h5 mb-0">Decrypt</h2>
           </div>
-          <div>
-            <input class="load-button" type="file" />
+          <div class="card-body">
+            <form class="decrypt-derive-key-controls">
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="unscramble-checkbox" name="scramble-checkbox">
+                <label class="form-check-label" for="unscramble-checkbox">
+                  Unscramble scrambled encrypted seed?
+                </label>
+              </div>
+              <div class="scramble-controls" style="display: none;">
+                <div class="mb-3">
+                  <label for="scrambled-encrypted-message" class="form-label">Scrambled encrypted seed</label>
+                  <input type="text" id="scrambled-encrypted-message" name="scrambled-encrypted-message" class="form-control"/>
+                </div>
+                <div class="mb-3">
+                  <input type="file" class="form-control unscramble-load-button"/>
+                </div>
+                <div class="mb-3">
+                  <label for="unscramblecode" class="form-label">Unscramble Code</label>
+                  <div class="input-group">
+                    <input type="password" id="unscramblecode" name="unscramblecode" class="form-control" placeholder="Byte positions to unscramble">
+                    <span class="input-group-text"><i id="unscramblecode-toggler" class="far fa-eye toggler"></i></span>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <button type="button" class="btn btn-warning unscramble-button">Unscramble</button>
+                </div>
+                <div>
+                  <label class="form-label">Unscrambled encrypted seed:</label>
+                  <span class="unscrambled-value form-text"></span>
+                </div>
+              </div>
+              <div class="mb-3 message-control">
+                <label for="encrypted-message" class="form-label">Encrypted seed</label>
+                <input type="text" id="encrypted-message" name="encrypted-message" class="form-control"/>
+              </div>
+              <div class="mb-3">
+                <input type="file" class="form-control load-button"/>
+              </div>
+              <div class="mb-3">
+                <label for="decrypt-passphrase" class="form-label">Passphrase</label>
+                <div class="input-group">
+                  <input type="password" id="decrypt-passphrase" class="form-control" placeholder="Enter Passphrase">
+                  <span class="input-group-text"><i id="decrypt-toggler" class="far fa-eye toggler"></i></span>
+                </div>
+              </div>
+              <div class="mb-3">
+                <button type="button" class="btn btn-primary decrypt-button">Decrypt</button>
+              </div>
+              <div>
+                <label class="form-label">Decrypted seed:</label>
+                <span class="row decrypted-value form-text"></span>
+              </div>
+            </form>
           </div>
-          <div class="decrypt-passphrase-div">
-            <label for="decrypt-passphrase">Passphrase:</label>
-            <input type="password" id="decrypt-passphrase" size="45" value="" placeholder="Enter Passphrase" />
-            <span><i id="decrypt-toggler"class="far fa-eye toggler"></i></span>
-          </div>
-          <div class="decrypt-button-div">
-            <input class="decrypt-button" type="button" value="Decrypt" />
-          </div>
-          <div class="decrypted">
-            Decrypted seed:<span class="decrypted-value"></span>
-          </div>
-        </section>
-      </section>
-    </section>
+        </div>
+      </div>
+    </div>
   </main>
+  <script src="crypto.js"></script>
+  <script src="scramble.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-<script src="crypto.js"></script>
-<script src="scramble.js"></script>
 </html>

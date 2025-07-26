@@ -1,64 +1,20 @@
 /* General setup */
 
-* {
-    box-sizing: border-box;
-}
-
-html,body {
-    font-family: sans-serif;
-    line-height: 1.2rem;
-}
-
 body {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: #f4f4f4;
-    flex-direction: column;
 }
 
 h1 {
     color: green;
-    margin-left: .5rem;
 }
 
 h6 {
     color: rgb(29, 29, 29);
-    margin-right: .5rem;
     text-align: right;
     font-weight: lighter;
 }
 
-.description, .derive-key {
-    margin: 0 .5rem;
-}
-
-.description > p {
-    margin-top: 0;
-}
-
-.derive-key {
-    box-shadow: -1px 2px 5px gray;
-    padding: .2rem .5rem;
-    margin-bottom: 2rem;
-}
-
-.encrypt-derive-key-controls > * {
-    margin: .5rem 0;
-}
-
-.decrypt-derive-key-controls > * {
-    margin: .5rem 0;
-}
-
-input[type="button"] {
-    width: 6rem;
-    height: 22px;
-}
-
-.encrypted-value, .decrypted-value {
+.encrypted-value, .decrypted-value, .scrambled-value, .unscrambled-value {
     padding-left: .5rem;
     font-family: monospace;
     font-size: medium;
@@ -69,303 +25,17 @@ input[type="button"] {
   color: red;
 }
 
-main {
-    display: grid;
-    grid-template-columns: 50rem;
-    grid-template-rows: 5rem 1fr;
-}
-
-h1 {
-    grid-column: 1/2;
-    grid-row: 1;
-}
-
-h6 {
-    grid-column: 1/2;
-    grid-row: 1;
-    font-style: italic;
-}
-
-.working-section {
-    grid-column: 1;
-    grid-row: 2;
-}
-
-.description {
-    grid-column: 1;
-    grid-row: 3;
-}
-
-.encrypt-derive-key-controls {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-}
-
-.decrypt-derive-key-controls {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-}
-
-.message-passphrase {
-    grid-column-start: 1;
-    grid-row-start: 1;
-}
-
-.message-control {
-    grid-column-start: 1;
-    grid-row-start: 2;
-}
-
-.encrypted {
-    grid-column-start: 1;
-    grid-row-start: 4;
-    max-block-size: 1rem;
-    margin-top: 1rem;
-}
-
-.decrypted {
-    grid-column-start: 1;
-    grid-row-start: 6;
-    max-block-size: 2rem;
-}
-
-.encrypt-button {
-    grid-column-start: 1;
-    grid-row-start: 3;
-}
-
-.save-button {
-    grid-column-start: 1;
-    grid-row-start: 3;
-    margin-left: 7rem;
-}
-
-.decrypt-button {
-    grid-column-start: 3;
-    grid-row-start: 2;
-    margin-left: 0rem;
-}
-
-.scramble > * {
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
-
-.scramble-code-div {
-    grid-column-start: 1;
-    grid-row-start: 3;
-} 
-
-.scramble-code-div input {
-    width: 47.5rem;
-    height: 2em;
-    padding: 1em;
-    border: 0;
-    border-radius: 5px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-}
-
-.scramble-button {
-    margin-left: 0rem;
-    margin-top: 1rem;
-}
-
-.scrambled-save-button {
-    margin-left: 0.7rem;
-    margin-top: -1.4rem;
-}
-
-.scrambled {
-    margin-top: .6rem;
-}
-
-.scrambled-value, .unscrambled-value {
-    padding-left: .5rem;
-    font-family: monospace;
-}
-
-.unscramble-controls {
-    grid-column-start: 2;
-    grid-row-start: 1;
-}
-
-.unscramble-code-div {
-    grid-column-start: 1;
-    grid-row-start: 2;
-    margin-top: .7rem;
-}
-
-.unscrambled-message-control input {
-    width: 47.5rem;
-    height: 2em;
-    padding: 1em;
-    border: 0;
-    border-radius: 5px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-}
-
-.unscramble-code-div input {
-    width: 47.5rem;
-    height: 2em;
-    padding: 1em;
-    border: 0;
-    border-radius: 5px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-}
-
-.scrambled-message-control {
-    grid-column-start: 1;
-    grid-row-start: 2;
-    margin-top: .1rem;
-}
-
-.unscrambled-message-control {
-    grid-column-start: 1;
-    grid-row-start: 1;
-    margin-top: .7rem;
-}
-
-.unscramble {
-    margin-top: 1rem;    
-}
-
-.unscramble-button {
-    grid-column-start: 2;
-    grid-row-start: 2;
-    margin-top: .5rem;
-}
-
-.unscramble-load-button {
-    margin-top: .7rem;
-}
-
-.unscrambled {
-    grid-column-start: 1;
-    grid-row-start: 3;
-    max-block-size: 1rem;
-    margin-top: .6rem;
-}
-
-.message-control input {
-    width: 47.5rem;
-    height: 2em;
-    padding: 1em;
-    border: 0;
-    border-radius: 5px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-}
-
-.encrypt-passphrase-div {
-    position: relative;
-}
-
-body .encrypt-passphrase-div input {
-    width: 53em;
-    height: 2em;
-    padding: 1em;
-    border: 0;
-    border-radius: 5px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-}
-
-body .encrypt-passphrase-div input::placeholder {
-    color: #000;
-    font-weight: regular;
-}
-
-body .encrypt-passphrase-div .toggler {
-    position: relative;
-    right: -735px;
-    top: -23%;
-    transform: translateY(-50%);
-    cursor: pointer;
-}
-
-body .scramble-code-div input::placeholder {
-    color: #000;
-    font-weight: regular;
-}    
-
-body .scramble-code-div .toggler {
-    position: relative;
-    right: -732px;
-    top: -50%;
-    transform: translateY(-150%);
-    cursor: pointer;
-}
-
-
-body .unscramble-code-div input::placeholder {
-    color: #000;
-    font-weight: regular;
-}    
-
-body .unscramble-code-div .toggler {
-    position: relative;
-    right: -732px;
-    top: -50%;
-    transform: translateY(-150%);
-    cursor: pointer;
-}
-
-.decrypt-passphrase-div {
-    position: relative;
-    grid-column-start: 1;
-    grid-row-start: 4;
-}
-
-body .decrypt-passphrase-div input {
-    width: 53em;
-    height: 2em;
-    padding: 1em;
-    border: 0;
-    border-radius: 5px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.5);
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-}
-
-body .decrypt-passphrase-div input::placeholder {
-    color: #000;
-    font-weight: regular;
-}
-
-body .decrypt-passphrase-div .toggler {
-    position: relative;
-    right: -735px;
-    top: -23%;
-    transform: translateY(-50%);
-    cursor: pointer;
-}
-
-body .decrypt-button-div {
-    position: relative;
-    grid-column-start: 1;
-    grid-row-start: 5;
-}
-
 /* Animate output display */
 .fade-in {
-    animation: fadein .5s;
+  animation: fadein 1s;
 }
 
 @keyframes fadein {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Hide scramble controls by default, shown by JS */
+.scramble-controls {
+  display: none;
 }
