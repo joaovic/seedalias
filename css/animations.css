@@ -64,6 +64,254 @@
   }
 }
 
+/* Button Press Effect */
+@keyframes button-press {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Icon Morph for Theme Toggle */
+@keyframes icon-rotate {
+  from {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: rotate(360deg);
+    opacity: 1;
+  }
+}
+
+/* Lift Effect for Buttons */
+@keyframes lift {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-2px);
+  }
+}
+
+/* Border Glow for Focus */
+@keyframes border-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(247, 147, 26, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(247, 147, 26, 0.2);
+  }
+}
+
+/* Input Validation Green Pulse */
+@keyframes input-valid {
+  0%, 100% {
+    border-color: var(--success);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+  }
+}
+
+/* File Drag Over */
+@keyframes drag-border-pulse {
+  0%, 100% {
+    border-color: var(--accent-primary);
+  }
+  50% {
+    border-color: var(--accent-hover);
+  }
+}
+
+/* Shimmer Effect for Loading */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Checkmark Appear */
+@keyframes checkmark-appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-45deg);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Success Bounce */
+@keyframes success-bounce {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Slide Down Success */
+@keyframes slide-down-success {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Error Wobble (gentler shake) */
+@keyframes wobble {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-4px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(4px);
+  }
+}
+
+/* Spinner Animation */
+@keyframes spinner-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Spinner Border Animation (dash) */
+@keyframes spinner-dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+
+/* Eye Icon Toggle */
+@keyframes eye-toggle {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Progress Bar Fill */
+@keyframes progress-fill {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Clipboard Copy Success */
+@keyframes copy-feedback {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* Character Stagger (Matrix-style) */
+@keyframes char-stagger {
+  0% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Unlock Icon Animation */
+@keyframes unlock-reveal {
+  0% {
+    transform: rotateZ(-20deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotateZ(0deg);
+    opacity: 1;
+  }
+}
+
+/* Lock Icon Animation */
+@keyframes lock-appear {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 .btn {
   transition: all var(--transition-fast);
 }
@@ -126,4 +374,481 @@
 
 .theme-toggle:active {
   transform: scale(0.95);
+}
+
+/* ========================================
+   PHASE 4 ENHANCEMENTS: Interactions & Polish
+   ======================================== */
+
+/* Primary Button Styling */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-fast) ease;
+  box-shadow: 0 2px 8px rgba(247, 147, 26, 0.2);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(247, 147, 26, 0.3);
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-hover));
+}
+
+.btn-primary:active {
+  animation: button-press 200ms ease;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(247, 147, 26, 0.15);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Secondary/Ghost Button */
+.btn-outline-secondary {
+  border-color: var(--border-medium);
+  color: var(--text-primary);
+  transition: all var(--transition-fast) ease;
+}
+
+.btn-outline-secondary:hover {
+  background-color: var(--bg-tertiary);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  transform: translateY(-2px);
+}
+
+.btn-outline-secondary:active {
+  transform: translateY(0);
+}
+
+/* Input Focus States */
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(247, 147, 26, 0.1);
+  animation: border-glow 0.3s ease-out;
+}
+
+.form-control:valid,
+.form-control.is-valid {
+  border-color: var(--success);
+  animation: input-valid 0.4s ease;
+}
+
+.form-control:invalid,
+.form-control.is-invalid {
+  border-color: var(--error);
+  animation: wobble 0.4s ease;
+}
+
+/* File Upload Zone Enhancement */
+.file-upload-zone {
+  border: 2px dashed var(--border-medium);
+  border-radius: 8px;
+  padding: 24px;
+  text-align: center;
+  background-color: var(--bg-tertiary);
+  transition: all var(--transition-normal) ease;
+  cursor: pointer;
+}
+
+.file-upload-zone:hover {
+  border-color: var(--accent-primary);
+  background-color: rgba(247, 147, 26, 0.05);
+  transform: scale(1.02);
+}
+
+.file-upload-zone.drag-over {
+  border-color: var(--accent-primary);
+  background-color: rgba(247, 147, 26, 0.1);
+  animation: drag-border-pulse 0.6s ease-in-out infinite;
+  box-shadow: 0 0 12px rgba(247, 147, 26, 0.2);
+}
+
+.file-upload-zone.drag-over:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  animation: drag-border-pulse 0.6s ease-in-out infinite;
+}
+
+/* Loading Spinner */
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(247, 147, 26, 0.2);
+  border-top-color: var(--accent-primary);
+  border-radius: 50%;
+  animation: spinner-rotate 0.8s linear infinite;
+}
+
+.spinner-small {
+  width: 16px;
+  height: 16px;
+  border-width: 2px;
+}
+
+/* Loading Button State */
+.btn:disabled .spinner {
+  margin-left: 8px;
+}
+
+/* Success State Styling */
+.state-success {
+  color: var(--success);
+  animation: slide-down-success 0.3s ease-out;
+}
+
+.state-success::before {
+  content: '✓ ';
+  margin-right: 4px;
+  font-weight: 600;
+}
+
+/* Error State Styling */
+.state-error {
+  color: var(--error);
+  animation: wobble 0.4s ease;
+}
+
+.state-error::before {
+  content: '✕ ';
+  margin-right: 4px;
+  font-weight: 600;
+}
+
+/* Success Checkmark Animation */
+.checkmark {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--success);
+  position: relative;
+  animation: success-bounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.checkmark::after {
+  content: '✓';
+  position: absolute;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Copy to Clipboard Feedback */
+.copy-button {
+  position: relative;
+  transition: all var(--transition-fast) ease;
+}
+
+.copy-button:hover {
+  color: var(--accent-primary);
+  transform: scale(1.1);
+}
+
+.copy-feedback {
+  position: absolute;
+  top: -30px;
+  right: 0;
+  background-color: var(--success);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  animation: copy-feedback 2s ease-out forwards;
+  z-index: 1000;
+}
+
+/* Passphrase Visibility Toggle */
+.toggle-passphrase {
+  cursor: pointer;
+  user-select: none;
+  transition: color var(--transition-fast);
+}
+
+.toggle-passphrase:hover {
+  color: var(--accent-primary);
+  transform: scale(1.15);
+}
+
+.toggle-passphrase-icon {
+  display: inline-block;
+  transition: transform var(--transition-fast) ease;
+}
+
+.toggle-passphrase.hidden .toggle-passphrase-icon {
+  animation: eye-toggle 0.3s ease-out;
+}
+
+/* Encryption/Decryption Result Display */
+.result-display {
+  background-color: var(--bg-tertiary);
+  border-left: 4px solid var(--accent-primary);
+  border-radius: 4px;
+  padding: 12px 16px;
+  margin-top: 12px;
+  animation: slide-down-success 0.4s ease-out;
+  font-family: 'Fira Code', 'IBM Plex Mono', monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  word-break: break-all;
+}
+
+.result-display.error {
+  border-left-color: var(--error);
+  background-color: rgba(239, 68, 68, 0.05);
+}
+
+.result-display.success {
+  border-left-color: var(--success);
+  background-color: rgba(16, 185, 129, 0.05);
+}
+
+/* Scramble Panel Reveal */
+.scramble-options {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-normal) ease-out,
+              opacity var(--transition-normal) ease-out,
+              transform var(--transition-normal) ease-out;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.scramble-options.visible {
+  max-height: 500px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Toggle Switch Styling */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 26px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-switch-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--border-medium);
+  transition: background-color var(--transition-fast) ease,
+              box-shadow var(--transition-fast) ease;
+  border-radius: 26px;
+}
+
+.toggle-switch-slider::before {
+  position: absolute;
+  content: '';
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: transform var(--transition-fast) ease;
+  border-radius: 50%;
+}
+
+.toggle-switch input:checked + .toggle-switch-slider {
+  background-color: var(--accent-primary);
+  box-shadow: 0 0 8px rgba(247, 147, 26, 0.4);
+}
+
+.toggle-switch input:checked + .toggle-switch-slider::before {
+  transform: translateX(22px);
+}
+
+.toggle-switch:focus-within .toggle-switch-slider {
+  box-shadow: 0 0 0 3px rgba(247, 147, 26, 0.2);
+}
+
+/* Save Button Transition */
+.save-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.save-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(247, 147, 26, 0.25);
+}
+
+.save-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.save-button:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Tooltip Styling */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+  border-bottom: 1px dotted var(--text-secondary);
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 12px;
+  position: absolute;
+  z-index: 1001;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -100px;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  font-size: 0.875rem;
+  white-space: normal;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.tooltip .tooltiptext::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--text-primary) transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Input Strength Meter */
+.strength-meter {
+  height: 6px;
+  background-color: var(--bg-tertiary);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.strength-meter-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--error), var(--warning), var(--success));
+  background-size: 300% 100%;
+  transition: width var(--transition-normal) ease,
+              background-position var(--transition-normal) ease;
+  border-radius: 3px;
+}
+
+.strength-meter-fill.weak {
+  width: 25%;
+  background-position: 0% 0%;
+}
+
+.strength-meter-fill.moderate {
+  width: 50%;
+  background-position: 50% 0%;
+}
+
+.strength-meter-fill.strong {
+  width: 75%;
+  background-position: 75% 0%;
+}
+
+.strength-meter-fill.very-strong {
+  width: 100%;
+  background-position: 100% 0%;
+}
+
+.strength-text {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  transition: color var(--transition-fast);
+}
+
+.strength-text.weak {
+  color: var(--error);
+}
+
+.strength-text.moderate {
+  color: var(--warning);
+}
+
+.strength-text.strong,
+.strength-text.very-strong {
+  color: var(--success);
+}
+
+/* Progress Bar for Operations */
+.progress-bar-animated {
+  animation: progress-fill 3s ease;
+}
+
+/* Validation Feedback Animation */
+.invalid-feedback,
+.valid-feedback {
+  display: block;
+  animation: slide-down-success 0.3s ease-out;
+  font-size: 0.875rem;
+  margin-top: 4px;
+}
+
+.invalid-feedback {
+  color: var(--error);
+}
+
+.valid-feedback {
+  color: var(--success);
+}
+
+/* Card Hover Enhancement */
+.card-interactive {
+  transition: all var(--transition-normal) ease;
+  cursor: pointer;
+}
+
+.card-interactive:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.card-interactive:active {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
