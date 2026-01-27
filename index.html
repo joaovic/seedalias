@@ -10,18 +10,23 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-  <div class="theme-toggle-container">
-    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-      <i class="fas fa-moon"></i>
-    </button>
-  </div>
-
-  <main class="container py-4">
-    <div class="text-center mb-4">
-      <h1>🔐 SEED ALIAS</h1>
-      <p class="text-muted">Cryptographic Seed Protection</p>
-      <h6 class="text-muted fst-italic">v0.6.0</h6>
+  <header class="app-header">
+    <div class="header-content">
+      <div class="header-brand">
+        <h1 class="app-title"><i class="fas fa-lock"></i> SEED ALIAS</h1>
+        <p class="app-tagline">Cryptographic Seed Protection</p>
+      </div>
+      <div class="header-actions">
+        <span class="version-badge">v0.6.0</span>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
     </div>
+  </header>
+
+  <main class="app-main">
+    <div class="container">
 
     <!-- Collapsible Description Section -->
     <div class="accordion mb-4" id="descAccordion">
@@ -82,55 +87,81 @@
     </div>
 
     <!-- Main Features: Encrypt / Decrypt -->
-    <div class="row g-4">
+    <div class="row g-4 main-cards">
       <!-- Encrypt Section -->
-      <div class="col-md-6 encrypt">
-        <div class="card shadow">
-          <div class="card-header bg-success text-white">
-            <h2 class="h5 mb-0">Encrypt</h2>
+      <div class="col-lg-6 encrypt">
+        <div class="card feature-card">
+          <div class="card-header">
+            <div class="card-header-content">
+              <i class="fas fa-lock card-icon"></i>
+              <h2 class="card-title">Encrypt</h2>
+            </div>
+            <span class="card-badge badge-encrypt">AES-256-GCM</span>
           </div>
           <div class="card-body">
             <form class="encrypt-derive-key-controls">
-              <div class="mb-3">
-                <label for="encrypt-passphrase" class="form-label">Passphrase</label>
-                <div class="input-group">
-                  <input type="password" id="encrypt-passphrase" class="form-control" placeholder="Enter Passphrase">
-                  <span class="input-group-text"><i id="encrypt-toggler" class="far fa-eye toggler"></i></span>
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="seed" class="form-label">Seed to encrypt</label>
-                <input type="text" id="seed" name="message" class="form-control" placeholder="Enter your seed words">
-              </div>
-              <div class="mb-3 d-flex gap-2">
-                <button type="button" class="btn btn-success encrypt-button">Encrypt</button>
-                <button type="button" class="btn btn-secondary save-button">Save</button>
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Encrypted seed:</label>
-                <span class="encrypted-value form-text"></span>
-              </div>
-              <div class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" id="scramble-checkbox" name="scramble-checkbox">
-                <label class="form-check-label" for="scramble-checkbox">
-                  Scramble your encrypted seed?
-                </label>
-              </div>
-              <div class="scramble-controls" style="display: none;">
+              <div class="form-section">
                 <div class="mb-3">
-                  <label for="scramblecode" class="form-label">Scramble code</label>
+                  <label for="encrypt-passphrase" class="form-label">Passphrase</label>
                   <div class="input-group">
-                    <input type="password" id="scramblecode" name="scramblecode" class="form-control" placeholder="Byte positions to swap">
-                    <span class="input-group-text"><i id="scramblecode-toggler" class="far fa-eye toggler"></i></span>
+                    <input type="password" id="encrypt-passphrase" class="form-control" placeholder="Enter your memorable passphrase">
+                    <button type="button" class="btn btn-outline-secondary input-group-text" tabindex="-1">
+                      <i id="encrypt-toggler" class="far fa-eye toggler"></i>
+                    </button>
                   </div>
                 </div>
-                <div class="mb-3 d-flex gap-2">
-                  <button type="button" class="btn btn-warning scramble-button">Scramble</button>
-                  <button type="button" class="btn btn-secondary scrambled-save-button">Save</button>
+                <div class="mb-3">
+                  <label for="seed" class="form-label">Seed to encrypt</label>
+                  <input type="text" id="seed" name="message" class="form-control" placeholder="Enter your seed words">
                 </div>
-                <div>
-                  <label class="form-label">Scrambled encrypted seed:</label>
-                  <span class="scrambled-value form-text"></span>
+              </div>
+              <div class="button-group">
+                <button type="button" class="btn btn-primary encrypt-button">
+                  <i class="fas fa-lock"></i> Encrypt
+                </button>
+                <button type="button" class="btn btn-outline-secondary save-button">
+                  <i class="fas fa-download"></i> Save
+                </button>
+              </div>
+              <div class="output-section">
+                <label class="form-label">Encrypted seed:</label>
+                <div class="output-box">
+                  <span class="encrypted-value"></span>
+                </div>
+              </div>
+              <div class="scramble-option">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="scramble-checkbox" name="scramble-checkbox">
+                  <label class="form-check-label" for="scramble-checkbox">
+                    <i class="fas fa-random"></i> Scramble for extra protection
+                  </label>
+                </div>
+              </div>
+              <div class="scramble-controls" style="display: none;">
+                <div class="scramble-panel">
+                  <div class="mb-3">
+                    <label for="scramblecode" class="form-label">Scramble code</label>
+                    <div class="input-group">
+                      <input type="password" id="scramblecode" name="scramblecode" class="form-control" placeholder="e.g., 01020304">
+                      <button type="button" class="btn btn-outline-secondary input-group-text" tabindex="-1">
+                        <i id="scramblecode-toggler" class="far fa-eye toggler"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="button-group">
+                    <button type="button" class="btn btn-warning scramble-button">
+                      <i class="fas fa-random"></i> Scramble
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary scrambled-save-button">
+                      <i class="fas fa-download"></i> Save
+                    </button>
+                  </div>
+                  <div class="output-section">
+                    <label class="form-label">Scrambled encrypted seed:</label>
+                    <div class="output-box">
+                      <span class="scrambled-value"></span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </form>
@@ -138,73 +169,97 @@
         </div>
       </div>
       <!-- Decrypt Section -->
-      <div class="col-md-6 decrypt">
-        <div class="card shadow">
-          <div class="card-header bg-primary text-white">
-            <h2 class="h5 mb-0">Decrypt</h2>
+      <div class="col-lg-6 decrypt">
+        <div class="card feature-card">
+          <div class="card-header">
+            <div class="card-header-content">
+              <i class="fas fa-unlock card-icon"></i>
+              <h2 class="card-title">Decrypt</h2>
+            </div>
+            <span class="card-badge badge-decrypt">AES-256-GCM</span>
           </div>
           <div class="card-body">
             <form class="decrypt-derive-key-controls">
-              <div class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" id="unscramble-checkbox" name="scramble-checkbox">
-                <label class="form-check-label" for="unscramble-checkbox">
-                  Unscramble scrambled encrypted seed?
-                </label>
+              <div class="scramble-option">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="unscramble-checkbox" name="scramble-checkbox">
+                  <label class="form-check-label" for="unscramble-checkbox">
+                    <i class="fas fa-random"></i> Unscramble first
+                  </label>
+                </div>
               </div>
               <div class="scramble-controls" style="display: none;">
-                <div class="mb-3">
-                  <label for="scrambled-encrypted-message" class="form-label">Scrambled encrypted seed</label>
-                  <input type="text" id="scrambled-encrypted-message" name="scrambled-encrypted-message" class="form-control"/>
-                </div>
-                <div class="mb-3">
-                  <input type="file" class="form-control unscramble-load-button"/>
-                </div>
-                <div class="mb-3">
-                  <label for="unscramblecode" class="form-label">Unscramble Code</label>
-                  <div class="input-group">
-                    <input type="password" id="unscramblecode" name="unscramblecode" class="form-control" placeholder="Byte positions to unscramble">
-                    <span class="input-group-text"><i id="unscramblecode-toggler" class="far fa-eye toggler"></i></span>
+                <div class="scramble-panel">
+                  <div class="mb-3">
+                    <label for="scrambled-encrypted-message" class="form-label">Scrambled encrypted seed</label>
+                    <input type="text" id="scrambled-encrypted-message" name="scrambled-encrypted-message" class="form-control" placeholder="Paste scrambled seed here"/>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Or load from file:</label>
+                    <input type="file" class="form-control file-input unscramble-load-button"/>
+                  </div>
+                  <div class="mb-3">
+                    <label for="unscramblecode" class="form-label">Unscramble Code</label>
+                    <div class="input-group">
+                      <input type="password" id="unscramblecode" name="unscramblecode" class="form-control" placeholder="e.g., 01020304">
+                      <button type="button" class="btn btn-outline-secondary input-group-text" tabindex="-1">
+                        <i id="unscramblecode-toggler" class="far fa-eye toggler"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="button-group">
+                    <button type="button" class="btn btn-warning unscramble-button">
+                      <i class="fas fa-random"></i> Unscramble
+                    </button>
+                  </div>
+                  <div class="output-section">
+                    <label class="form-label">Unscrambled encrypted seed:</label>
+                    <div class="output-box">
+                      <span class="unscrambled-value"></span>
+                    </div>
                   </div>
                 </div>
+              </div>
+              <div class="form-section">
+                <div class="mb-3 message-control">
+                  <label for="encrypted-message" class="form-label">Encrypted seed</label>
+                  <input type="text" id="encrypted-message" name="encrypted-message" class="form-control" placeholder="Paste encrypted seed here"/>
+                </div>
                 <div class="mb-3">
-                  <button type="button" class="btn btn-warning unscramble-button">Unscramble</button>
+                  <label class="form-label">Or load from file:</label>
+                  <input type="file" class="form-control file-input load-button"/>
                 </div>
-                <div>
-                  <label class="form-label">Unscrambled encrypted seed:</label>
-                  <span class="unscrambled-value form-text"></span>
-                </div>
-              </div>
-              <div class="mb-3 message-control">
-                <label for="encrypted-message" class="form-label">Encrypted seed</label>
-                <input type="text" id="encrypted-message" name="encrypted-message" class="form-control"/>
-              </div>
-              <div class="mb-3">
-                <input type="file" class="form-control load-button"/>
-              </div>
-              <div class="mb-3">
-                <label for="decrypt-passphrase" class="form-label">Passphrase</label>
-                <div class="input-group">
-                  <input type="password" id="decrypt-passphrase" class="form-control" placeholder="Enter Passphrase">
-                  <span class="input-group-text"><i id="decrypt-toggler" class="far fa-eye toggler"></i></span>
+                <div class="mb-3">
+                  <label for="decrypt-passphrase" class="form-label">Passphrase</label>
+                  <div class="input-group">
+                    <input type="password" id="decrypt-passphrase" class="form-control" placeholder="Enter your passphrase">
+                    <button type="button" class="btn btn-outline-secondary input-group-text" tabindex="-1">
+                      <i id="decrypt-toggler" class="far fa-eye toggler"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
-              <div class="mb-3">
-                <button type="button" class="btn btn-primary decrypt-button">Decrypt</button>
+              <div class="button-group">
+                <button type="button" class="btn btn-primary decrypt-button">
+                  <i class="fas fa-unlock"></i> Decrypt
+                </button>
               </div>
-              <div>
+              <div class="output-section">
                 <label class="form-label">Decrypted seed:</label>
-                <span class="row decrypted-value form-text"></span>
+                <div class="output-box output-success">
+                  <span class="decrypted-value"></span>
+                </div>
               </div>
             </form>
           </div>
         </div>
       </div>
     </div>
+    </div>
   </main>
   <script src="js/theme.js"></script>
   <script src="crypto.js"></script>
   <script src="scramble.js"></script>
-  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
