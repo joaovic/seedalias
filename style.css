@@ -2,6 +2,7 @@
 @import url('./css/typography.css');
 @import url('./css/theme.css');
 @import url('./css/animations.css');
+@import url('./css/security.css');
 
 .error {
   color: var(--error);
