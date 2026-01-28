@@ -1,0 +1,391 @@
+/**
+ * PHASE 5: Advanced Features
+ * Background enhancements, clipboard management, and visual depth
+ */
+
+/* ========================================
+   Phase 5: Background Textures & Patterns
+   ======================================== */
+
+/**
+ * Light Theme Background
+ * Subtle grain texture overlay
+ */
+body[data-theme="light"],
+body:not([data-theme]) {
+  background-color: var(--bg-primary);
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.02) 2px,
+      rgba(0, 0, 0, 0.02) 4px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.02) 2px,
+      rgba(0, 0, 0, 0.02) 4px
+    ),
+    linear-gradient(180deg, 
+      var(--bg-primary) 0%, 
+      var(--bg-secondary) 50%, 
+      var(--bg-primary) 100%
+    );
+  background-attachment: fixed;
+  background-size: 100% 100%, 100% 100%, 100% 200px;
+  position: relative;
+}
+
+/**
+ * Light Theme Subtle Grid Pattern
+ * Evokes cryptographic structure (very subtle)
+ */
+body[data-theme="light"]::before,
+body:not([data-theme])::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(0deg, transparent 24%, 
+      rgba(200, 200, 200, 0.05) 25%, 
+      rgba(200, 200, 200, 0.05) 26%, 
+      transparent 27%, 
+      transparent 74%, 
+      rgba(200, 200, 200, 0.05) 75%, 
+      rgba(200, 200, 200, 0.05) 76%, 
+      transparent 77%, 
+      transparent),
+    linear-gradient(90deg, transparent 24%, 
+      rgba(200, 200, 200, 0.05) 25%, 
+      rgba(200, 200, 200, 0.05) 26%, 
+      transparent 27%, 
+      transparent 74%, 
+      rgba(200, 200, 200, 0.05) 75%, 
+      rgba(200, 200, 200, 0.05) 76%, 
+      transparent 77%, 
+      transparent);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.3;
+}
+
+/**
+ * Dark Theme Background
+ * Subtle noise texture overlay
+ */
+body[data-theme="dark"] {
+  background-color: var(--bg-primary);
+  background-image: 
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" /></filter><rect width="100" height="100" fill="rgb(15,15,15)" filter="url(%23noise)" opacity="0.03"/></svg>'),
+    linear-gradient(180deg, 
+      var(--bg-primary) 0%, 
+      var(--bg-secondary) 50%, 
+      var(--bg-primary) 100%
+    );
+  background-attachment: fixed;
+  background-size: 100px 100px, 100% 200px;
+  position: relative;
+}
+
+/**
+ * Dark Theme Hexagonal Pattern
+ * Subtle blockchain/cryptographic reference (very subtle)
+ */
+body[data-theme="dark"]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"><g fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"><path d="M 0 20 L 20 0 L 40 20 L 40 60 L 20 80 L 0 60 Z"/><path d="M 40 20 L 60 0 L 80 20 L 80 60 L 60 80 L 40 60 Z"/></g></svg>');
+  background-size: 80px 80px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+/**
+ * Ensure content appears above background patterns
+ */
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ========================================
+   Phase 5: Vignette Effect
+   ======================================== */
+
+/**
+ * Subtle vignette for depth perception
+ * Applies to body with pseudo-element
+ */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  background: radial-gradient(ellipse at center, 
+    transparent 0%, 
+    rgba(0, 0, 0, 0.03) 100%
+  );
+}
+
+/* Light theme vignette (softer) */
+body[data-theme="light"]::after,
+body:not([data-theme])::after {
+  background: radial-gradient(ellipse at center, 
+    transparent 0%, 
+    rgba(0, 0, 0, 0.02) 100%
+  );
+}
+
+/* Dark theme vignette (slightly stronger) */
+body[data-theme="dark"]::after {
+  background: radial-gradient(ellipse at center, 
+    transparent 0%, 
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}
+
+/* ========================================
+   Phase 5: Clipboard Security Warning
+   ======================================== */
+
+.clipboard-security-warning {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: rgba(251, 191, 36, 0.95);
+  color: var(--text-primary);
+  padding: 12px 16px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  z-index: 1001;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+  
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--transition-normal) ease;
+}
+
+.clipboard-security-warning.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.clipboard-security-warning i {
+  font-size: var(--font-size-lg);
+  color: var(--warning);
+}
+
+/* Dark theme styling */
+body[data-theme="dark"] .clipboard-security-warning {
+  background-color: rgba(178, 113, 0, 0.95);
+  color: var(--text-primary);
+}
+
+/* ========================================
+   Phase 5: Enhanced Visual Hierarchy
+   ======================================== */
+
+/**
+ * App header with subtle depth
+ */
+.app-header {
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.05),
+    0 4px 12px rgba(0, 0, 0, 0.03);
+  backdrop-filter: blur(2px);
+}
+
+/* Light theme header */
+body[data-theme="light"] .app-header,
+body:not([data-theme]) .app-header {
+  background: linear-gradient(
+    180deg,
+    rgba(250, 250, 250, 0.95) 0%,
+    rgba(245, 245, 245, 0.95) 100%
+  );
+}
+
+/* Dark theme header */
+body[data-theme="dark"] .app-header {
+  background: linear-gradient(
+    180deg,
+    rgba(26, 26, 26, 0.95) 0%,
+    rgba(15, 15, 15, 0.95) 100%
+  );
+}
+
+/* ========================================
+   Phase 5: Feature Cards with Depth
+   ======================================== */
+
+.feature-card {
+  backdrop-filter: blur(4px);
+  transition: all var(--transition-normal) ease;
+}
+
+.feature-card:hover {
+  box-shadow: 
+    0 8px 16px rgba(247, 147, 26, 0.1),
+    0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   Phase 5: Input Depth Enhancement
+   ======================================== */
+
+.form-control,
+.form-select {
+  backdrop-filter: blur(2px);
+  transition: all var(--transition-fast) ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  backdrop-filter: blur(4px);
+}
+
+/* Light theme inputs */
+body[data-theme="light"] .form-control,
+body:not([data-theme]) .form-control,
+body[data-theme="light"] .form-select,
+body:not([data-theme]) .form-select {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* Dark theme inputs */
+body[data-theme="dark"] .form-control,
+body[data-theme="dark"] .form-select {
+  background-color: rgba(26, 26, 26, 0.95);
+}
+
+/* ========================================
+   Phase 5: Accent Light Effect
+   ======================================== */
+
+/**
+ * Subtle accent highlights for security indicators
+ */
+.status-badge-encrypted,
+.status-badge-scrambled,
+.status-badge-success {
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.2);
+}
+
+.status-badge-scrambled {
+  box-shadow: 0 0 8px rgba(247, 147, 26, 0.2);
+}
+
+/* ========================================
+   Phase 5: Smooth Transitions on Theme
+   ======================================== */
+
+* {
+  transition: background-color var(--transition-normal) ease,
+              color var(--transition-normal) ease,
+              border-color var(--transition-normal) ease,
+              box-shadow var(--transition-normal) ease,
+              backdrop-filter var(--transition-normal) ease;
+}
+
+/* Exclude animations from general transition */
+@keyframes none {
+  0%, 100% { }
+}
+
+button,
+.btn,
+input[type="checkbox"],
+input[type="radio"] {
+  transition: all var(--transition-fast) ease;
+}
+
+/* ========================================
+   Phase 5: Mobile Optimization
+   ======================================== */
+
+@media (max-width: 768px) {
+  .clipboard-security-warning {
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+    margin: 0 auto;
+    width: calc(100% - 20px);
+  }
+  
+  body[data-theme="light"]::before,
+  body:not([data-theme])::before {
+    background-size: 30px 30px, 30px 30px, 100% 200px;
+  }
+  
+  body[data-theme="dark"]::before {
+    background-size: 60px 60px;
+  }
+}
+
+/* ========================================
+   Phase 5: Print Optimization
+   ======================================== */
+
+@media print {
+  body::before,
+  body::after {
+    display: none !important;
+  }
+  
+  .clipboard-security-warning {
+    display: none !important;
+  }
+  
+  * {
+    background-image: none !important;
+  }
+}
+
+/* ========================================
+   Phase 5: High Contrast Mode Support
+   ======================================== */
+
+@media (prefers-contrast: more) {
+  body[data-theme="light"]::before,
+  body:not([data-theme])::before {
+    opacity: 0.5;
+  }
+  
+  body[data-theme="dark"]::before {
+    opacity: 1;
+  }
+  
+  body::after {
+    display: none;
+  }
+}
+
+/* ========================================
+   Phase 5: Dark Mode Preference
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  body:not([data-theme]) {
+    background-color: var(--bg-primary);
+    background-image: 
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" /></filter><rect width="100" height="100" fill="rgb(15,15,15)" filter="url(%23noise)" opacity="0.03"/></svg>'),
+      linear-gradient(180deg, 
+        var(--bg-primary) 0%, 
+        var(--bg-secondary) 50%, 
+        var(--bg-primary) 100%
+      );
+  }
+}

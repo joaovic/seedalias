@@ -2,24 +2,63 @@
   'use strict';
 
   function calculatePassphraseStrength(passphrase) {
-    if (!passphrase) return { level: '', text: '' };
+    if (!passphrase) return { level: '', text: '', score: 0, entropy: 0 };
     
     let score = 0;
+    let entropy = 0;
     
+    // Length-based scoring
     if (passphrase.length >= 8) score += 1;
     if (passphrase.length >= 12) score += 1;
     if (passphrase.length >= 16) score += 1;
-    if (passphrase.length >= 24) score += 1;
+    if (passphrase.length >= 24) score += 2; // Bonus for very long
     
-    if (/[a-z]/.test(passphrase)) score += 1;
-    if (/[A-Z]/.test(passphrase)) score += 1;
-    if (/[0-9]/.test(passphrase)) score += 1;
-    if (/[^a-zA-Z0-9]/.test(passphrase)) score += 1;
+    // Character set scoring
+    let charsetSize = 0;
+    if (/[a-z]/.test(passphrase)) {
+      score += 1;
+      charsetSize += 26;
+    }
+    if (/[A-Z]/.test(passphrase)) {
+      score += 1;
+      charsetSize += 26;
+    }
+    if (/[0-9]/.test(passphrase)) {
+      score += 1;
+      charsetSize += 10;
+    }
+    if (/[^a-zA-Z0-9]/.test(passphrase)) {
+      score += 1;
+      charsetSize += 32; // Special characters
+    }
     
-    if (score <= 2) return { level: 'weak', text: 'Weak' };
-    if (score <= 4) return { level: 'moderate', text: 'Moderate' };
-    if (score <= 6) return { level: 'strong', text: 'Strong' };
-    return { level: 'very-strong', text: 'Very Strong' };
+    // Calculate Shannon entropy (bits of entropy)
+    entropy = Math.log2(charsetSize) * passphrase.length;
+    
+    // Determine strength level
+    let level = '';
+    let text = '';
+    
+    if (score <= 2) {
+      level = 'weak';
+      text = 'Weak';
+    } else if (score <= 4) {
+      level = 'moderate';
+      text = 'Moderate';
+    } else if (score <= 6) {
+      level = 'strong';
+      text = 'Strong';
+    } else {
+      level = 'very-strong';
+      text = 'Very Strong';
+    }
+    
+    // Add entropy to text
+    if (entropy > 0) {
+      text += ` (${entropy.toFixed(1)} bits)`;
+    }
+    
+    return { level, text, score, entropy };
   }
 
   function updateStrengthMeter(inputId, barId, textId) {
@@ -125,27 +164,85 @@
     }
   }
 
-  function setupCopyButton(buttonId, valueSelector) {
-    const button = document.getElementById(buttonId);
-    if (!button) return;
-    
-    button.addEventListener('click', function() {
-      const valueElement = document.querySelector(valueSelector);
-      if (!valueElement || !valueElement.textContent) return;
-      
-      navigator.clipboard.writeText(valueElement.textContent).then(function() {
-        button.classList.add('copied');
-        button.setAttribute('data-tooltip', 'Copied!');
-        button.innerHTML = '<i class="fas fa-check"></i>';
-        
-        setTimeout(function() {
-          button.classList.remove('copied');
-          button.setAttribute('data-tooltip', 'Copy to clipboard');
-          button.innerHTML = '<i class="fas fa-copy"></i>';
-        }, 2000);
-      });
-    });
-  }
+   function setupCopyButton(buttonId, valueSelector) {
+     const button = document.getElementById(buttonId);
+     if (!button) return;
+     
+     button.addEventListener('click', function() {
+       const valueElement = document.querySelector(valueSelector);
+       if (!valueElement || !valueElement.textContent) return;
+       
+       navigator.clipboard.writeText(valueElement.textContent).then(function() {
+         button.classList.add('copied');
+         button.setAttribute('data-tooltip', 'Copied!');
+         button.innerHTML = '<i class="fas fa-check"></i>';
+         
+         // Show clipboard security warning
+         showClipboardSecurityWarning();
+         
+         // Auto-clear clipboard after 30 seconds
+         clearClipboardAfterDelay(30000);
+         
+         setTimeout(function() {
+           button.classList.remove('copied');
+           button.setAttribute('data-tooltip', 'Copy to clipboard');
+           button.innerHTML = '<i class="fas fa-copy"></i>';
+         }, 2000);
+       }).catch(function(err) {
+         console.error('Failed to copy:', err);
+         button.innerHTML = '<i class="fas fa-times"></i>';
+         button.style.color = 'var(--error)';
+         setTimeout(function() {
+           button.innerHTML = '<i class="fas fa-copy"></i>';
+           button.style.color = '';
+         }, 1500);
+       });
+     });
+   }
+
+   /**
+    * PHASE 5: Show clipboard security warning
+    */
+   function showClipboardSecurityWarning() {
+     const warning = document.createElement('div');
+     warning.className = 'clipboard-security-warning';
+     warning.innerHTML = `
+       <i class="fas fa-exclamation-circle"></i>
+       <span>Clipboard will be cleared in 30 seconds for security</span>
+     `;
+     
+     document.body.appendChild(warning);
+     
+     // Fade in
+     setTimeout(() => {
+       warning.classList.add('visible');
+     }, 10);
+     
+     // Auto-remove after display time
+     setTimeout(() => {
+       warning.classList.remove('visible');
+       setTimeout(() => warning.remove(), 300);
+     }, 5000);
+   }
+
+   /**
+    * PHASE 5: Automatically clear clipboard after delay
+    */
+   let clipboardClearTimeout = null;
+   
+   function clearClipboardAfterDelay(delay = 30000) {
+     // Cancel previous timeout if exists
+     if (clipboardClearTimeout) {
+       clearTimeout(clipboardClearTimeout);
+     }
+     
+     clipboardClearTimeout = setTimeout(() => {
+       navigator.clipboard.writeText('').catch(err => {
+         console.error('Could not clear clipboard:', err);
+       });
+       clipboardClearTimeout = null;
+     }, delay);
+   }
 
   function setupWarningDismiss() {
     const warning = document.getElementById('security-warning');
