@@ -7,9 +7,11 @@ This comprehensive guide walks you through all features of Seed Alias for securi
 1. [Getting Started](#getting-started)
 2. [Encrypting Your Seed](#encrypting-your-seed)
 3. [Decrypting Your Seed](#decrypting-your-seed)
-4. [Using the Scramble Feature](#using-the-scramble-feature)
-5. [Working with Files](#working-with-files)
-6. [Troubleshooting](#troubleshooting)
+4. [UI Features](#ui-features)
+5. [Using the Scramble Feature](#using-the-scramble-feature)
+6. [Working with Files](#working-with-files)
+7. [Troubleshooting](#troubleshooting)
+8. [FAQ](#faq)
 7. [FAQ](#faq)
 
 ---
@@ -63,11 +65,13 @@ The application has two main panels:
 1. Click the "Passphrase" field in the Encrypt panel
 2. Type your memorable passphrase
 3. Click the eye icon to verify what you typed
+4. Observe the strength meter below the field showing passphrase strength
 
 **Passphrase Tips:**
 - Use a sentence you'll never forget
 - Example: "My grandmother makes the best apple pie since 1985!"
 - Avoid: Single words, birthdays, common phrases
+- Aim for "Strong" or "Very Strong" rating on the strength meter
 
 #### Step 2: Enter Your Seed Phrase
 1. Click the "Seed to encrypt" field
@@ -92,9 +96,59 @@ word1 word2 word3 word4 word5 word6 word7 word8 word9 word10 word11 word12
 ### Verification
 **IMPORTANT:** Always verify your encryption worked:
 1. Note that your passphrase was copied to the Decrypt panel
-2. The encrypted value appears in both the display and the decrypt input
-3. Click **Decrypt** to verify you can recover your seed
-4. **Only after successful verification** should you consider the backup valid
+2. The encrypted value appears in both the display and decrypt input
+3. Click the copy button (top-right of output box) to copy encrypted value
+4. Click **Decrypt** to verify you can recover your seed
+5. **Only after successful verification** should you consider your backup valid
+
+---
+
+## UI Features
+
+### Passphrase Strength Meter
+- Located below passphrase input fields
+- Shows real-time strength assessment
+- Color-coded bar: Red (Weak) → Yellow (Moderate) → Green (Strong)
+- Displays strength text: "Weak", "Moderate", "Strong", or "Very Strong"
+- Shows entropy (bits) for technical users
+- Helps ensure you're using strong passphrases
+
+### Copy to Clipboard
+- Copy button in top-right corner of encrypted/scrambled output boxes
+- Click to copy value to clipboard
+- Shows "Copied!" feedback animation and checkmark
+- Displays security warning toast: "Clipboard will be cleared in 30 seconds"
+- Auto-clears clipboard after 30 seconds for security
+
+### Theme Toggle
+- Located in top-right corner of page header
+- Click to switch between light and dark themes
+- Smooth color transitions (400ms)
+- Preference saved to localStorage automatically
+- Respects system preference on first visit
+
+### Status Indicators
+- Color-coded badges show encryption/decryption state
+- Green with lock icon: Encrypted
+- Orange with random icon: Scrambled
+- Gray circle: Waiting for input
+- Green check: Success
+- Red X: Error
+
+### Animations & Feedback
+- Smooth button click animations with ripple effects
+- Loading spinners during encryption/decryption operations
+- Slide-in/out animations for scramble panels
+- Fade-in effects for encrypted/decrypted results
+- Focus states with subtle border glow on input fields
+- Error shake animation for failed operations
+
+### Background Effects
+- Light theme: Subtle cross-hatch grain texture with grid pattern
+- Dark theme: SVG noise texture with hexagonal blockchain pattern
+- Vignette effect for visual depth
+- Professional "Cryptographic Vault" aesthetic
+- All textures are CSS-generated (no external images)
 
 ---
 

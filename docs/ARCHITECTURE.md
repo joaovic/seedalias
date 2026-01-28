@@ -51,7 +51,9 @@ The main entry point containing the user interface structure.
 - Defines the two-panel layout (Encrypt/Decrypt)
 - Loads Bootstrap 5.3 for styling
 - Loads Font Awesome for icons
-- Includes crypto.js and scramble.js modules
+- Includes Google Fonts (IBM Plex Mono, Inter)
+- Loads modular CSS files (variables, theme, typography, animations, security, advanced)
+- Loads modular JavaScript files (theme, security, interactions, crypto, scramble)
 
 ### crypto.js
 Core encryption module implementing all cryptographic operations.
@@ -61,7 +63,7 @@ Core encryption module implementing all cryptographic operations.
 - Key derivation pipeline using PBKDF2
 - AES-256-GCM encryption/decryption
 - File save/load operations for encrypted seeds
-- UI event handlers for encrypt/decrypt actions
+- Passphrase visibility toggle
 
 ### scramble.js
 Optional obfuscation layer for additional security.
@@ -71,17 +73,49 @@ Optional obfuscation layer for additional security.
 - Byte swap operations based on position codes
 - Input validation for scramble codes
 - File save/load operations for scrambled seeds
-- UI event handlers for scramble/unscramble actions
+- Scramble code validation
 
-### style.css
-Application styling with custom CSS and Bootstrap overrides.
+### js/theme.js
+Theme management module for dark/light mode switching.
 
 **Key Components:**
+- Theme toggle functionality
+- localStorage persistence
+- System preference detection
+- Smooth theme transitions
+
+### style.css
+Main stylesheet that imports modular CSS files.
+
+**Key Components:**
+- Imported modules: variables.css, typography.css, theme.css, animations.css, security.css, advanced.css
 - General layout styles
-- Monospace font for hex values
-- Fade-in animation for output display
-- Error styling for decryption failures
-- Visibility controls for scramble panels
+- Bootstrap overrides
+- Application-wide styles
+
+### js/security.js
+Security features and validation module.
+
+**Key Components:**
+- Passphrase strength meter calculation
+- Scramble code validation
+- Copy to clipboard functionality
+- Clipboard security timer
+- Status badge updates
+- Byte count tracking
+
+### js/interactions.js
+UI interaction handlers and animations module.
+
+**Key Components:**
+- Encrypt/decrypt button interactions
+- Scramble panel animations
+- File upload visual feedback
+- Ripple effects
+- Loading spinners
+- Tooltip system
+- Success/error notifications
+- Advanced visual effects
 
 ## Cryptographic Pipeline
 

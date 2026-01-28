@@ -42,9 +42,20 @@ This guide is for developers who want to understand the codebase, modify existin
 ```
 seedalias/
 ├── index.html              # Main UI - Two-panel layout (Encrypt/Decrypt)
-├── crypto.js               # Core encryption/decryption module (IIFE)
-├── scramble.js             # Byte scrambling module (IIFE)
-├── style.css               # Custom styles + Bootstrap overrides
+├── css/                    # Modular CSS files
+│   ├── variables.css       # CSS custom properties (colors, spacing, typography)
+│   ├── typography.css      # Font definitions (IBM Plex Mono, Inter)
+│   ├── theme.css          # Dark/light theme system
+│   ├── animations.css     # Keyframes and transitions
+│   ├── security.css       # Security indicators styling
+│   └── advanced.css      # Background effects, clipboard, advanced features
+├── js/                     # Modular JavaScript files
+│   ├── crypto.js          # Core encryption/decryption module (IIFE)
+│   ├── scramble.js        # Byte scrambling module (IIFE)
+│   ├── theme.js          # Theme switching (dark/light mode)
+│   ├── security.js       # Security features (strength meter, validation)
+│   └── interactions.js   # UI interactions and animations
+├── style.css               # Main stylesheet (imports css/ modules)
 ├── README.md               # User-facing project overview
 ├── CHANGELOG.md            # Version history
 ├── donation-qrcode.jpeg    # Support QR code
@@ -59,7 +70,8 @@ seedalias/
     ├── TESTING.md          # Testing strategies and QA
     ├── CONTRIBUTING.md     # Contribution guidelines
     ├── TROUBLESHOOTING.md  # Common issues and solutions
-    └── DEPLOYMENT.md       # Hosting and setup procedures
+    ├── DEPLOYMENT.md       # Hosting and setup procedures
+    └── UI_ENHANCEMENT_PLAN.md # UI/UX design specifications
 ```
 
 ---
@@ -226,6 +238,77 @@ Validation:
 .unscramble-load-button      // Load scrambled file
 #unscramblecode-toggler      // Show/hide code
 ```
+
+### js/theme.js - Theme Management Module
+
+**Responsibility:** Handle dark/light theme switching with persistence
+
+**Key Variables:**
+- `theme` - Current theme ('light' or 'dark')
+
+**Key Functions:**
+
+| Function | Purpose | Async |
+|----------|---------|-------|
+| `init()` | Initialize theme from localStorage or system preference | No |
+| `toggleTheme()` | Switch between light and dark themes | No |
+| `setTheme(themeName)` | Set specific theme (light/dark) | No |
+| `saveTheme(themeName)` | Save theme preference to localStorage | No |
+| `loadTheme()` | Load theme from localStorage | No |
+| `getSystemTheme()` | Detect system color scheme preference | No |
+
+**Theme Storage:**
+- Key: `seedalias-theme`
+- Values: `'light'`, `'dark'`
+
+### js/security.js - Security Features Module
+
+**Responsibility:** Implement security indicators, validation, and clipboard management
+
+**Key Functions:**
+
+| Function | Purpose | Async |
+|----------|---------|-------|
+| `calculatePassphraseStrength(passphrase)` | Calculate passphrase strength score | No |
+| `updateStrengthMeter(inputId, barId, textId)` | Update strength meter UI | No |
+| `validateScrambleCode(code)` | Validate scramble code format | No |
+| `setupScrambleValidation(inputId, validationId)` | Setup scramble code input validation | No |
+| `updateStatusBadge(badgeId, status, text)` | Update status badge UI | No |
+| `updateByteCount(elementId, value)` | Update byte count display | No |
+| `setupCopyButton(buttonId, valueSelector)` | Setup copy to clipboard button | No |
+| `showClipboardSecurityWarning()` | Display security warning toast | No |
+| `clearClipboardAfterDelay(delay)` | Auto-clear clipboard after delay | No |
+
+**Strength Levels:**
+- `weak` (0-2 points)
+- `moderate` (3-4 points)
+- `strong` (5-6 points)
+- `very strong` (7+ points)
+
+**Scoring Criteria:**
+- Length: >=8, >=12, >=16, >=24 characters
+- Character sets: lowercase, uppercase, digits, special characters
+- Entropy calculation: Math.log2(charsetSize) * length
+
+### js/interactions.js - UI Interactions Module
+
+**Responsibility:** Handle UI animations, micro-interactions, and user feedback
+
+**Key Functions:**
+
+| Function | Purpose | Async |
+|----------|---------|-------|
+| `init()` | Initialize all interaction handlers | No |
+| `setupButtonRipple()` | Add ripple effect to buttons | No |
+| `setupInputAnimations()` | Add input focus effects | No |
+| `setupLoadingSpinners()` | Configure loading states | No |
+| `setupFileUploadFeedback()` | Add drag-and-drop feedback | No |
+| `setupToastNotifications()` | Configure notification system | No |
+| `setupTooltipSystem()` | Initialize tooltips with positioning | No |
+| `animateEncryption()` | Encryption process animation | Yes |
+| `animateDecryption()` | Decryption process animation | Yes |
+| `showSuccessNotification(message)` | Display success notification | No |
+| `showErrorNotification(message)` | Display error notification | No |
 
 ---
 

@@ -453,3 +453,492 @@ Load File (unscramble) →       loadScrambledKeyFromFile()
 Click Unscramble       →       unscramble()
 Type Scramble Code     →       scrambleValidation()
 ```
+
+---
+
+## js/theme.js Module
+
+The theme module manages dark/light mode switching with localStorage persistence.
+
+### Global Variables
+
+#### `theme`
+Current active theme ('light' or 'dark').
+
+---
+
+### Functions
+
+#### `init()`
+Initializes theme from localStorage or system preference.
+
+**Parameters:** None
+
+**Returns:** `void`
+
+**Process:**
+1. Check localStorage for saved preference
+2. If not found, detect system color scheme preference
+3. Apply theme to document body
+4. Setup theme toggle button handler
+
+---
+
+#### `toggleTheme()`
+Switches between light and dark themes.
+
+**Parameters:** None
+
+**Returns:** `void`
+
+**Process:**
+1. Determine current theme
+2. Switch to opposite theme
+3. Save new preference to localStorage
+4. Update document body data-theme attribute
+
+---
+
+#### `setTheme(themeName)`
+Sets a specific theme.
+
+**Parameters:**
+| Name | Type | Description |
+|------|------|-------------|
+| `themeName` | `string` | Theme name ('light' or 'dark') |
+
+**Returns:** `void`
+
+**Behavior:**
+- Updates `document.body.setAttribute('data-theme', themeName)`
+- Saves preference to localStorage
+
+---
+
+#### `saveTheme(themeName)`
+Saves theme preference to localStorage.
+
+**Parameters:**
+| Name | Type | Description |
+|------|------|-------------|
+| `themeName` | `string` | Theme name ('light' or 'dark') |
+
+**Returns:** `void`
+
+**Storage Key:** `'seedalias-theme'`
+
+---
+
+#### `loadTheme()`
+Loads theme preference from localStorage.
+
+**Parameters:** None
+
+**Returns:** `string | null` - Theme name or null if not found
+
+---
+
+#### `getSystemTheme()`
+Detects system color scheme preference.
+
+**Parameters:** None
+
+**Returns:** `string` - 'dark' or 'light'
+
+**Uses:** `window.matchMedia('(prefers-color-scheme: dark)')`
+
+---
+
+---
+
+## js/security.js Module
+
+The security module provides security indicators, validation, and clipboard management.
+
+### Global Objects
+
+#### `SecurityIndicators`
+Exposed API object for external access if needed.
+
+```javascript
+window.SecurityIndicators = {
+  updateStatusBadge,
+  updateByteCount,
+  calculatePassphraseStrength,
+  validateScrambleCode
+};
+```
+
+---
+
+### Functions
+
+#### `calculatePassphraseStrength(passphrase)`
+Calculates passphrase strength and entropy.
+
+**Parameters:**
+| Name | Type | Description |
+|------|------|-------------|
+| `passphrase` | `string` | Passphrase to evaluate |
+
+**Returns:** `object` - Strength metrics
+
+```javascript
+{
+  level: 'weak' | 'moderate' | 'strong' | 'very-strong',
+  text: string,  // "Weak (80.5 bits)"
+  score: number,  // 0-7
+  entropy: number // Bits of entropy
+}
+```
+
+**Scoring Criteria:**
+- Length: >=8 (+1), >=12 (+1), >=16 (+1), >=24 (+2)
+- Character sets: lowercase (+1), uppercase (+1), digits (+1), special (+1)
+- Entropy: Math.log2(charsetSize) * length
+
+---
+
+#### `updateStrengthMeter(inputId, barId, textId)`
+Sets up real-time passphrase strength meter.
+
+**Parameters:**
+| Name | Type | Description |
+|------|------|-------------|
+| `inputId` | `string` | Passphrase input element ID |
+| `barId` | `string` | Strength bar element ID |
+| `textId` | `string` | Strength text element ID |
+
+**Returns:** `void`
+
+**Behavior:**
+- Listens for input events on passphrase field
+- Updates strength bar color and width
+- Updates text with strength level and entropy
+
+---
+
+#### `validateScrambleCode(code)`
+Validates scramble code format.
+
+**Parameters:**
+| Name | Type | Description |
+|------|------|-------------|
+| `code` | `string` | Scramble code to validate |
+
+**Returns:** `object`
+
+```javascript
+{
+  valid: boolean,
+  message: string  // Error message or success description
+}
+```
+
+**Validation Rules:**
+- Length must be divisible by 4
+- Must contain only digits
+
+---
+
+#### `setupScrambleValidation(inputId, validationId)`
+Sets up real-time scramble code validation.
+
+**Parameters:**
+| Name | Type | Description |
+|------|------|-------------|
+| `inputId` | `string` | Scramble code input element ID |
+| `validationId` | `string` | Validation message element ID |
+
+**Returns:** `void`
+
+**Behavior:**
+- Adds invalid/valid custom classes to input
+- Shows validation message with icon
+- Updates on every input event
+
+---
+
+#### `updateStatusBadge(badgeId, status, text)`
+Updates status badge appearance and content.
+
+**Parameters:**
+| Name | Type | Description |
+|------|------|-------------|
+| `badgeId` | `string` | Status badge element ID |
+| `status` | `string` | Badge status ('encrypted', 'scrambled', 'success', 'error') |
+| `text` | `string` | Custom badge text (optional) |
+
+**Returns:** `void`
+
+**Status Types:**
+- `'encrypted'` - Green lock icon
+- `'scrambled'` - Orange random icon
+- `'success'` - Green check icon
+- `'error'` - Red times icon
+- `null` - Gray circle icon
+
+---
+
+#### `updateByteCount(elementId, value)`
+Updates byte count display.
+
+**Parameters:**
+| Name | Type | Description |
+|------|------|-------------|
+| `elementId` | `string` | Byte count element ID |
+| `value` | `string` | Value to calculate bytes from |
+
+**Returns:** `void`
+
+**Behavior:**
+- Calculates byte count using Blob size
+- Displays as "X bytes"
+
+---
+
+#### `setupCopyButton(buttonId, valueSelector)`
+Sets up copy to clipboard functionality.
+
+**Parameters:**
+| Name | Type | Description |
+|------|------|-------------|
+| `buttonId` | `string` | Copy button element ID |
+| `valueSelector` | `string` | CSS selector for value element |
+
+**Returns:** `void`
+
+**Behavior:**
+- Copies text to clipboard on click
+- Shows "Copied!" feedback
+- Displays clipboard security warning
+- Auto-clears clipboard after 30 seconds
+
+---
+
+#### `showClipboardSecurityWarning()`
+Displays security warning toast about clipboard clearing.
+
+**Parameters:** None
+
+**Returns:** `void`
+
+**Behavior:**
+- Creates warning toast element
+- Auto-removes after 5 seconds
+- Shows warning icon and message
+
+---
+
+#### `clearClipboardAfterDelay(delay)`
+Automatically clears clipboard after delay.
+
+**Parameters:**
+| Name | Type | Description |
+|------|------|-------------|
+| `delay` | `number` | Delay in milliseconds (default: 30000) |
+
+**Returns:** `void`
+
+**Behavior:**
+- Cancels any previous timeout
+- clears clipboard using `navigator.clipboard.writeText('')`
+
+---
+
+#### `observeEncryptedValue()`
+Observes encrypted value changes and updates UI.
+
+**Parameters:** None
+
+**Returns:** `void`
+
+**Behavior:**
+- Uses MutationObserver on encrypted value element
+- Updates status badge and byte count on changes
+
+---
+
+#### `observeScrambledValue()`
+Observes scrambled value changes and updates UI.
+
+**Parameters:** None
+
+**Returns:** `void`
+
+**Behavior:**
+- Uses MutationObserver on scrambled value element
+- Updates status badge on changes
+
+---
+
+#### `observeDecryptedValue()`
+Observes decrypted value changes and updates UI.
+
+**Parameters:** None
+
+**Returns:** `void`
+
+**Behavior:**
+- Uses MutationObserver on decrypted value element
+- Updates status badge on changes
+
+---
+
+#### `observeUnscrambledValue()`
+Observes unscrambled value changes and updates UI.
+
+**Parameters:** None
+
+**Returns:** `void`
+
+**Behavior:**
+- Uses MutationObserver on unscrambled value element
+- Updates status badge on changes
+
+---
+
+#### `setupWarningDismiss()`
+Sets up security warning dismissal.
+
+**Parameters:** None
+
+**Returns:** `void`
+
+**Behavior:**
+- Handles dismiss button click
+- Removes warning from DOM
+
+---
+
+## js/interactions.js Module
+
+The interactions module handles UI animations, micro-interactions, and user feedback.
+
+### Functions
+
+#### `init()`
+Initializes all interaction handlers.
+
+**Parameters:** None
+
+**Returns:** `void`
+
+**Initializes:**
+- Button ripple effects
+- Input animations
+- Loading spinners
+- File upload feedback
+- Toast notifications
+- Tooltip system
+- Password visibility toggles
+
+---
+
+#### `setupButtonRipple()`
+Adds ripple effect to all buttons.
+
+**Parameters:** None
+
+**Returns:** `void`
+
+**Behavior:**
+- Creates circular ripple on button click
+- Animates ripple expansion and fade
+- Removes ripple after animation
+
+---
+
+#### `setupInputAnimations()`
+Adds focus effects to inputs.
+
+**Parameters:** None
+
+**Returns:** `void`
+
+**Behavior:**
+- Adds border glow on focus
+- Smooth transition animations
+- Validates input on blur
+
+---
+
+#### `setupLoadingSpinners()`
+Configures loading states for buttons.
+
+**Parameters:** None
+
+**Returns:** `void`
+
+**Behavior:**
+- Shows spinner on button during operations
+- Disables button during loading
+- Restores button state on completion
+
+---
+
+#### `setupFileUploadFeedback()`
+Adds drag-and-drop feedback for file inputs.
+
+**Parameters:** None
+
+**Returns:** `void`
+
+**Behavior:**
+- Highlights drop zone on drag over
+- Shows loading animation during file read
+- Updates UI on successful load
+
+---
+
+#### `setupToastNotifications()`
+Configures notification system.
+
+**Parameters:** None
+
+**Returns:** `void`
+
+**Behavior:**
+- Creates toast notification element
+- Shows success/error notifications
+- Auto-dismisses after timeout
+
+---
+
+#### `setupTooltipSystem()`
+Initializes tooltips with positioning.
+
+**Parameters:** None
+
+**Returns:** `void`
+
+**Behavior:**
+- Creates tooltips on hover
+- Positions tooltips near elements
+- Ensures accessibility
+
+---
+
+#### `showSuccessNotification(message)`
+Displays success notification.
+
+**Parameters:**
+| Name | Type | Description |
+|------|------|-------------|
+| `message` | `string` | Success message |
+
+**Returns:** `void`
+
+---
+
+#### `showErrorNotification(message)`
+Displays error notification.
+
+**Parameters:**
+| Name | Type | Description |
+|------|------|-------------|
+| `message` | `string` | Error message |
+
+**Returns:** `void`
+
+---

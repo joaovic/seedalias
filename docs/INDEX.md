@@ -24,6 +24,7 @@ Welcome! This is your central hub for all Seed Alias documentation. Whether you'
 ## 📝 Additional Resources
 
 - **[CHANGELOG.md](CHANGELOG.md)** - Version history and release notes
+- **[UI_ENHANCEMENT_PLAN.md](UI_ENHANCEMENT_PLAN.md)** - UI/UX design specifications and implementation status
 
 ---
 
