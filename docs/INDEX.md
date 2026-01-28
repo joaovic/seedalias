@@ -74,4 +74,4 @@ Welcome! This is your central hub for all Seed Alias documentation. Whether you'
 
 ---
 
-**Version:** 0.6.0 | **Last Updated:** January 2026
+**Version:** 1.0.0 | **Last Updated:** January 2026

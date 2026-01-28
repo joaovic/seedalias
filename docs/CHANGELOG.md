@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [0.6.0] - 2025-01-26
+## [1.0.0] - 2026-01-28
 
 ### Added
 
@@ -117,7 +117,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Known Issues
 
-### Version 0.6.0
+### Version 1.0.0
 
 - None reported
 
@@ -129,14 +129,14 @@ The following versions contained security-related changes:
 
 | Version | Details | Date |
 |---------|---------|------|
-| 0.6.0 | Documentation review for security best practices | 2025-01-26 |
+| 1.0.0 | Official release milestone with complete documentation | 2025-01-26 |
 | 0.5.0 | Cryptographic implementation with 100k iterations | 2024-12 |
 
 ---
 
 ## Migration Guides
 
-### From 0.5.0 to 0.6.0
+### From 0.5.0 to 1.0.0
 
 No breaking changes. All encrypted files from 0.5.0 remain compatible.
 
@@ -238,6 +238,6 @@ See [LICENSE](../LICENSE) file for details.
 
 ---
 
-**Last Updated:** January 2026 | **Current Version:** 0.6.0
+**Last Updated:** January 2026 | **Current Version:** 1.0.0
 
 For more information, visit the [Documentation Index](INDEX.md).

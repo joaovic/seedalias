@@ -166,7 +166,7 @@ This document outlines a comprehensive UI enhancement plan for the Seed Alias ap
 **Header Section:**
 ```
 ┌─────────────────────────────────────────────────┐
-│  🔐 SEED ALIAS          [Dark/Light] v0.6.0     │
+│  🔐 SEED ALIAS          [Dark/Light] v1.0.0     │
 │  Cryptographic Seed Protection                  │
 └─────────────────────────────────────────────────┘
 ```
