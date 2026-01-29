@@ -224,20 +224,6 @@ body[data-theme="dark"] .clipboard-security-warning {
   backdrop-filter: blur(4px);
 }
 
-/* Light theme inputs */
-body[data-theme="light"] .form-control,
-body:not([data-theme]) .form-control,
-body[data-theme="light"] .form-select,
-body:not([data-theme]) .form-select {
-  background-color: rgba(255, 255, 255, 0.95);
-}
-
-/* Dark theme inputs */
-body[data-theme="dark"] .form-control,
-body[data-theme="dark"] .form-select {
-  background-color: rgba(26, 26, 26, 0.95);
-}
-
 /* ========================================
    Phase 5: Accent Light Effect
    ======================================== */
