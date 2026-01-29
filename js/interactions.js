@@ -571,7 +571,7 @@
     // Setup all interactions
     setupPrimaryButtons();
     setupSaveButtons();
-    setupPassphraseToggle('encrypt-passphrase', 'encrypt-toggler');
+    setupPassphraseToggle('encrypt-seed', 'encrypt-toggler');
     setupPassphraseToggle('decrypt-seed', 'decrypt-toggler');
     setupInputFocusStates();
     setupFileUploadZone('file-upload-zone', 'file-input');
