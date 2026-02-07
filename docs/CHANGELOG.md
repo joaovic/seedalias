@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.1.0] - 2026-02-07
+
+### Added
+
+- **Internationalization**
+  - Allow user change language to English-US or Portuguese-BR
+
 ## [1.0.0] - 2026-01-28
 
 ### Added
@@ -90,20 +97,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Planned Features
 
-### Version 0.7.0 (Future)
+### Version 0.7.0
 
-- [ ] Dark mode toggle
-- [ ] Multiple encryption algorithm support (AES-128-GCM)
-- [ ] Language/localization support
-- [ ] Batch encryption/decryption
-- [ ] Integration tests
+- [x] Dark mode toggle
+- [x] Multiple encryption algorithm support (AES-128-GCM)
+- [x] Integration tests
 
-### Version 1.0.0 (Future)
+### Version 1.0.0
 
-- [ ] Official release milestone
-- [ ] Increased iteration count (PBKDF2)
-- [ ] Hardened security review
-- [ ] Extended browser support validation
+- [x] Official release milestone
+- [x] Increased iteration count (PBKDF2)
+- [x] Hardened security review
+- [x] Extended browser support validation
+
+### Version 1.1.0
+
+- [x] Language/localization support
 
 ---
 
@@ -129,12 +138,17 @@ The following versions contained security-related changes:
 
 | Version | Details | Date |
 |---------|---------|------|
+| 1.1.0 | Added internatinalization feature | 2025-02-07 |
 | 1.0.0 | Official release milestone with complete documentation | 2025-01-26 |
 | 0.5.0 | Cryptographic implementation with 100k iterations | 2024-12 |
 
 ---
 
 ## Migration Guides
+
+### From 1.0.0 to 1.1.0
+
+No breaking changes. Added internatinalization only.
 
 ### From 0.5.0 to 1.0.0
 
@@ -169,6 +183,16 @@ No breaking changes. All encrypted files from 0.1.0 remain compatible.
 ---
 
 ## Release Notes Archive
+
+### [1.1.0] - 2025-February
+
+**Highlights:**
+- Internationalization
+
+### [1.0.0] - 2025-January
+
+**Highlights:**
+- Theme switcher
 
 ### [0.5.0] - 2024-December
 
@@ -238,6 +262,6 @@ See [LICENSE](../LICENSE) file for details.
 
 ---
 
-**Last Updated:** January 2026 | **Current Version:** 1.0.0
+**Last Updated:** February 2026 | **Current Version:** 1.1.0
 
 For more information, visit the [Documentation Index](INDEX.md).

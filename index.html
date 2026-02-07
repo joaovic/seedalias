@@ -13,15 +13,31 @@
   <header class="app-header">
     <div class="header-content">
       <div class="header-brand">
-        <h1 class="app-title"><i class="fas fa-lock"></i> SEED ALIAS</h1>
-        <p class="app-tagline">Cryptographic Seed Protection</p>
+        <h1 class="app-title"><i class="fas fa-lock"></i> <span data-i18n="app.title">SEED ALIAS</span></h1>
+        <p class="app-tagline" data-i18n="app.tagline">Cryptographic Seed Protection</p>
       </div>
       <div class="header-actions">
         <div class="offline-indicator" id="offline-indicator">
           <span class="offline-indicator-dot"></span>
-          <span>Offline Mode</span>
+          <span data-i18n="app.offlineMode">Offline Mode</span>
         </div>
-        <span class="version-badge">v1.0.0</span>
+        <span class="version-badge" data-i18n="app.version">v1.1.0</span>
+        <div class="lang-dropdown" id="lang-dropdown">
+          <button class="lang-toggle" id="lang-toggle" aria-label="Change language" data-i18n-aria="security.dismissAria">
+            <span class="lang-flag">🇺🇸</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="lang-menu" id="lang-menu" style="display: none;">
+            <button class="lang-option" data-lang="en-US">
+              <span class="lang-option-flag">🇺🇸</span>
+              <span class="lang-option-name">English</span>
+            </button>
+            <button class="lang-option" data-lang="pt-BR">
+              <span class="lang-option-flag">🇧🇷</span>
+              <span class="lang-option-name">Português</span>
+            </button>
+          </div>
+        </div>
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
           <i class="fas fa-moon"></i>
         </button>
@@ -36,10 +52,10 @@
     <div class="security-warning warning-amber" id="security-warning">
       <i class="fas fa-exclamation-triangle security-warning-icon"></i>
       <div class="security-warning-content">
-        <div class="security-warning-title">Security Notice</div>
-        <p class="security-warning-text">Never share your passphrase or encrypted seed with anyone. Store securely offline. All operations are performed locally in your browser.</p>
+        <div class="security-warning-title" data-i18n="security.warningTitle">Security Notice</div>
+        <p class="security-warning-text" data-i18n="security.warningText">Never share your passphrase or encrypted seed with anyone. Store securely offline. All operations are performed locally in your browser.</p>
       </div>
-      <button class="security-warning-dismiss" id="dismiss-warning" aria-label="Dismiss warning">
+      <button class="security-warning-dismiss" id="dismiss-warning" aria-label="Dismiss warning" data-i18n-aria="security.dismissAria">
         <i class="fas fa-times"></i>
       </button>
     </div>
@@ -48,48 +64,48 @@
     <div class="accordion mb-4" id="descAccordion">
       <div class="accordion-item">
         <h2 class="accordion-header" id="descHeading">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#descCollapse" aria-expanded="false" aria-controls="descCollapse">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#descCollapse" aria-expanded="false" aria-controls="descCollapse" data-i18n="nav.descriptionTitle">
             Description & Instructions
           </button>
         </h2>
         <div id="descCollapse" class="accordion-collapse collapse" aria-labelledby="descHeading" data-bs-parent="#descAccordion">
           <div class="accordion-body">
             <section class="description">
-              <p>
+              <p data-i18n="instructions.paragraph1">
                 Use this web page to create an alias for your seed.
                 Define a passphrase which you are familiar and can always remember.
                 The passphrase will be used to encrypt and decrypt your seed.
                 Optionally, you can scramble your encrypted seed to get higher protection.
               </p>
-              <p>
+              <p data-i18n="instructions.paragraph2">
                 After seed encryption, you should save the encrypted seed to a file and store in a secured environment. Never
                 store it online or send it over wire.
               </p>
-              <p>
+              <p data-i18n="instructions.paragraph3">
                 If you are planning save it online or send it over wire, it is recommend that you scramble it first before saving it to a file.
-                Scramble your encrypted seed providing a pair of bytes position for the byte swap operation.<br>
+                Scramble your encrypted seed providing a pair of bytes position for the byte swap operation.
                 After scramble your encrypted seed and save it to a file you may compress it with a password generating a binary file, achieving higher protection.
               </p>
-              <p>
+              <p data-i18n="instructions.paragraph4">
                 Example of scramble codes:
               </p>
               <ul>
-                <li>0102, will swap the bytes at position 1 and 2, i.e., will swap the first by the second byte</li>
-                <li>2107, will swap the bytes at positions 21 and 7</li>
-                <li>21071312, will swap the bytes at positions 21 and 7. And after will swap bytes at positions 13 and 12</li>
+                <li data-i18n="instructions.example1">0102, will swap the bytes at position 1 and 2, i.e., will swap the first by the second byte</li>
+                <li data-i18n="instructions.example2">2107, will swap the bytes at positions 21 and 7</li>
+                <li data-i18n="instructions.example3">21071312, will swap the bytes at positions 21 and 7. And after will swap bytes at positions 13 and 12</li>
               </ul>
-              OBS: Positions <b>are not</b> <i>zero based</i> like <i>array index</i>. They <b>are</b> <i>one (1) based</i>.
+              <span data-i18n="instructions.obs1">OBS: Positions are not zero based like array index. They are one (1) based.</span>
               <br>
-              OBS: You can provide as many position pairs as you want.
+              <span data-i18n="instructions.obs2">OBS: You can provide as many position pairs as you want.</span>
               <br>
-              OBS: Position value less than 10 must be prefixed with digit zero (0). Ex: 09.
+              <span data-i18n="instructions.obs3">OBS: Position value less than 10 must be prefixed with digit zero (0). Ex: 09.</span>
               <br>
-              OBS: Positions must not be greater than encrypted seed bytes length.
-              <p>
+              <span data-i18n="instructions.obs4">OBS: Positions must not be greater than encrypted seed bytes length.</span>
+              <p data-i18n="instructions.obs5">
                 OBS: You should keep the passphrase secret, it's recommended that you do not write it down.
                 It should be a sentence that you will never forget, so keep in your mind.
               </p>
-              <p class="text-danger small">
+              <p class="text-danger small" data-i18n="instructions.dangerWarning">
                 If you share the information generated by this page with anyone, they can steal your assets.
                 Anyone asking you to share your secret passphrase or your seed is a scammer.
                 Do NOT copy & paste information from this page or send it to anyone offering to help you on Twitter, Discord,
@@ -110,17 +126,17 @@
           <div class="card-header">
             <div class="card-header-content">
               <i class="fas fa-lock card-icon"></i>
-              <h2 class="card-title">Encrypt</h2>
+              <h2 class="card-title" data-i18n="encrypt.title">Encrypt</h2>
             </div>
-            <span class="card-badge badge-encrypt">AES-256-GCM</span>
+            <span class="card-badge badge-encrypt" data-i18n="encrypt.algorithm">AES-256-GCM</span>
           </div>
           <div class="card-body">
             <form class="encrypt-derive-key-controls">
               <div class="form-section">
                 <div class="mb-3">
-                  <label for="encrypt-passphrase" class="form-label">Passphrase</label>
+                  <label for="encrypt-passphrase" class="form-label" data-i18n="encrypt.passphraseLabel">Passphrase</label>
                   <div class="input-group">
-                    <input type="password" id="encrypt-passphrase" class="form-control" placeholder="Enter your memorable passphrase">
+                    <input type="password" id="encrypt-passphrase" class="form-control" data-i18n-placeholder="encrypt.passphrasePlaceholder" placeholder="Enter your memorable passphrase">
                     <button type="button" class="btn btn-outline-secondary input-group-text" tabindex="-1">
                       <i id="encrypt-toggler" class="far fa-eye toggler"></i>
                     </button>
@@ -133,8 +149,8 @@
                   </div>
                 </div>
                 <div class="mb-3">
-                  <label for="seed" class="form-label">Seed to encrypt</label>
-                  <input type="text" id="seed" name="message" class="form-control" placeholder="Enter your seed words">
+                  <label for="seed" class="form-label" data-i18n="encrypt.seedLabel">Seed to encrypt</label>
+                  <input type="text" id="seed" name="message" class="form-control" data-i18n-placeholder="encrypt.seedPlaceholder" placeholder="Enter your seed words">
                   <div class="validation-message" id="seed-validation"></div>
                 </div>
               </div>
@@ -142,18 +158,18 @@
                 <button type="button" class="btn btn-primary encrypt-button" id="encrypt-btn">
                   <span class="process-state">
                     <i class="fas fa-lock"></i>
-                    <span>Encrypt</span>
+                    <span data-i18n="encrypt.button">Encrypt</span>
                   </span>
                 </button>
                 <button type="button" class="btn btn-outline-secondary save-button">
-                  <i class="fas fa-download"></i> Save
+                  <i class="fas fa-download"></i> <span data-i18n="encrypt.saveButton">Save</span>
                 </button>
               </div>
               <div class="output-section">
                 <div class="output-status">
-                  <label class="form-label mb-0">Encrypted seed:</label>
+                  <label class="form-label mb-0" data-i18n="encrypt.resultLabel">Encrypted seed:</label>
                   <div class="output-meta">
-                    <span class="status-badge status-badge-none" id="encrypt-status">
+                    <span class="status-badge status-badge-none" id="encrypt-status" data-i18n="encrypt.statusWaiting">
                       <i class="fas fa-circle"></i>
                       <span>Waiting</span>
                     </span>
@@ -164,10 +180,10 @@
                   <div class="output-box-header">
                     <span class="algorithm-indicator">
                       <i class="fas fa-shield-alt"></i>
-                      AES-256-GCM
+                      <span data-i18n="encrypt.algorithm">AES-256-GCM</span>
                     </span>
                     <div class="output-box-actions">
-                      <button type="button" class="copy-button tooltip-custom" data-tooltip="Copy to clipboard" id="copy-encrypted">
+                      <button type="button" class="copy-button tooltip-custom" data-tooltip="Copy to clipboard" id="copy-encrypted" data-i18n-data-tooltip="common.copyTooltip">
                         <i class="fas fa-copy"></i>
                       </button>
                     </div>
@@ -182,16 +198,16 @@
                 <div class="form-check form-switch">
                   <input class="form-check-input" type="checkbox" id="scramble-checkbox" name="scramble-checkbox">
                   <label class="form-check-label" for="scramble-checkbox">
-                    <i class="fas fa-random"></i> Scramble for extra protection
+                    <i class="fas fa-random"></i> <span data-i18n="scramble.optionLabel">Scramble for extra protection</span>
                   </label>
                 </div>
               </div>
               <div class="scramble-controls" style="display: none;">
                 <div class="scramble-panel">
                   <div class="mb-3">
-                    <label for="scramblecode" class="form-label">Scramble code</label>
+                    <label for="scramblecode" class="form-label" data-i18n="scramble.codeLabel">Scramble code</label>
                     <div class="input-group">
-                      <input type="password" id="scramblecode" name="scramblecode" class="form-control" placeholder="e.g., 01020304">
+                      <input type="password" id="scramblecode" name="scramblecode" class="form-control" data-i18n-placeholder="scramble.codePlaceholder" placeholder="e.g., 01020304">
                       <button type="button" class="btn btn-outline-secondary input-group-text" tabindex="-1">
                         <i id="scramblecode-toggler" class="far fa-eye toggler"></i>
                       </button>
@@ -200,16 +216,16 @@
                   </div>
                   <div class="button-group">
                     <button type="button" class="btn btn-warning scramble-button">
-                      <i class="fas fa-random"></i> Scramble
+                      <i class="fas fa-random"></i> <span data-i18n="scramble.button">Scramble</span>
                     </button>
                     <button type="button" class="btn btn-outline-secondary scrambled-save-button">
-                      <i class="fas fa-download"></i> Save
+                      <i class="fas fa-download"></i> <span data-i18n="scramble.saveButton">Save</span>
                     </button>
                   </div>
                   <div class="output-section">
                     <div class="output-status">
-                      <label class="form-label mb-0">Scrambled encrypted seed:</label>
-                      <span class="status-badge status-badge-none" id="scramble-status">
+                      <label class="form-label mb-0" data-i18n="scramble.resultLabel">Scrambled encrypted seed:</label>
+                      <span class="status-badge status-badge-none" id="scramble-status" data-i18n="scramble.statusWaiting">
                         <i class="fas fa-circle"></i>
                         <span>Waiting</span>
                       </span>
@@ -218,10 +234,10 @@
                       <div class="output-box-header">
                         <span class="algorithm-indicator">
                           <i class="fas fa-random"></i>
-                          Byte Swap
+                          <span data-i18n="scramble.algorithm">Byte Swap</span>
                         </span>
                         <div class="output-box-actions">
-                          <button type="button" class="copy-button tooltip-custom" data-tooltip="Copy to clipboard" id="copy-scrambled">
+                          <button type="button" class="copy-button tooltip-custom" data-tooltip="Copy to clipboard" id="copy-scrambled" data-i18n-data-tooltip="common.copyTooltip">
                             <i class="fas fa-copy"></i>
                           </button>
                         </div>
@@ -241,9 +257,9 @@
           <div class="card-header">
             <div class="card-header-content">
               <i class="fas fa-unlock card-icon"></i>
-              <h2 class="card-title">Decrypt</h2>
+              <h2 class="card-title" data-i18n="decrypt.title">Decrypt</h2>
             </div>
-            <span class="card-badge badge-decrypt">AES-256-GCM</span>
+            <span class="card-badge badge-decrypt" data-i18n="decrypt.algorithm">AES-256-GCM</span>
           </div>
           <div class="card-body">
             <form class="decrypt-derive-key-controls">
@@ -251,24 +267,24 @@
                 <div class="form-check form-switch">
                   <input class="form-check-input" type="checkbox" id="unscramble-checkbox" name="scramble-checkbox">
                   <label class="form-check-label" for="unscramble-checkbox">
-                    <i class="fas fa-random"></i> Unscramble first
+                    <i class="fas fa-random"></i> <span data-i18n="unscramble.optionLabel">Unscramble first</span>
                   </label>
                 </div>
               </div>
               <div class="scramble-controls" style="display: none;">
                 <div class="scramble-panel">
                   <div class="mb-3">
-                    <label for="scrambled-encrypted-message" class="form-label">Scrambled encrypted seed</label>
-                    <input type="text" id="scrambled-encrypted-message" name="scrambled-encrypted-message" class="form-control" placeholder="Paste scrambled seed here"/>
+                    <label for="scrambled-encrypted-message" class="form-label" data-i18n="unscramble.scrambledLabel">Scrambled encrypted seed</label>
+                    <input type="text" id="scrambled-encrypted-message" name="scrambled-encrypted-message" class="form-control" data-i18n-placeholder="unscramble.scrambledPlaceholder" placeholder="Paste scrambled seed here"/>
                   </div>
                   <div class="mb-3">
-                    <label class="form-label">Or load from file:</label>
+                    <label class="form-label"><span data-i18n="common.or">Or</span> <span data-i18n="common.loadFromFile">load from file:</span></label>
                     <input type="file" class="form-control file-input unscramble-load-button"/>
                   </div>
                   <div class="mb-3">
-                    <label for="unscramblecode" class="form-label">Unscramble Code</label>
+                    <label for="unscramblecode" class="form-label" data-i18n="unscramble.codeLabel">Unscramble Code</label>
                     <div class="input-group">
-                      <input type="password" id="unscramblecode" name="unscramblecode" class="form-control" placeholder="e.g., 01020304">
+                      <input type="password" id="unscramblecode" name="unscramblecode" class="form-control" data-i18n-placeholder="unscramble.codePlaceholder" placeholder="e.g., 01020304">
                       <button type="button" class="btn btn-outline-secondary input-group-text" tabindex="-1">
                         <i id="unscramblecode-toggler" class="far fa-eye toggler"></i>
                       </button>
@@ -277,13 +293,13 @@
                   </div>
                   <div class="button-group">
                     <button type="button" class="btn btn-warning unscramble-button">
-                      <i class="fas fa-random"></i> Unscramble
+                      <i class="fas fa-random"></i> <span data-i18n="unscramble.button">Unscramble</span>
                     </button>
                   </div>
                   <div class="output-section">
                     <div class="output-status">
-                      <label class="form-label mb-0">Unscrambled encrypted seed:</label>
-                      <span class="status-badge status-badge-none" id="unscramble-status">
+                      <label class="form-label mb-0" data-i18n="unscramble.resultLabel">Unscrambled encrypted seed:</label>
+                      <span class="status-badge status-badge-none" id="unscramble-status" data-i18n="unscramble.statusWaiting">
                         <i class="fas fa-circle"></i>
                         <span>Waiting</span>
                       </span>
@@ -296,17 +312,17 @@
               </div>
               <div class="form-section">
                 <div class="mb-3 message-control">
-                  <label for="encrypted-message" class="form-label">Encrypted seed</label>
-                  <input type="text" id="encrypted-message" name="encrypted-message" class="form-control" placeholder="Paste encrypted seed here"/>
+                  <label for="encrypted-message" class="form-label" data-i18n="decrypt.encryptedLabel">Encrypted seed</label>
+                  <input type="text" id="encrypted-message" name="encrypted-message" class="form-control" data-i18n-placeholder="decrypt.encryptedPlaceholder" placeholder="Paste encrypted seed here"/>
                 </div>
                 <div class="mb-3">
-                  <label class="form-label">Or load from file:</label>
+                  <label class="form-label"><span data-i18n="common.or">Or</span> <span data-i18n="common.loadFromFile">load from file:</span></label>
                   <input type="file" class="form-control file-input load-button"/>
                 </div>
                 <div class="mb-3">
-                  <label for="decrypt-passphrase" class="form-label">Passphrase</label>
+                  <label for="decrypt-passphrase" class="form-label" data-i18n="decrypt.passphraseLabel">Passphrase</label>
                   <div class="input-group">
-                    <input type="password" id="decrypt-passphrase" class="form-control" placeholder="Enter your passphrase">
+                    <input type="password" id="decrypt-passphrase" class="form-control" data-i18n-placeholder="decrypt.passphrasePlaceholder" placeholder="Enter your passphrase">
                     <button type="button" class="btn btn-outline-secondary input-group-text" tabindex="-1">
                       <i id="decrypt-toggler" class="far fa-eye toggler"></i>
                     </button>
@@ -317,14 +333,14 @@
                 <button type="button" class="btn btn-primary decrypt-button" id="decrypt-btn">
                   <span class="process-state">
                     <i class="fas fa-unlock"></i>
-                    <span>Decrypt</span>
+                    <span data-i18n="decrypt.button">Decrypt</span>
                   </span>
                 </button>
               </div>
               <div class="output-section">
                 <div class="output-status">
-                  <label class="form-label mb-0">Decrypted seed:</label>
-                  <span class="status-badge status-badge-none" id="decrypt-status">
+                  <label class="form-label mb-0" data-i18n="decrypt.resultLabel">Decrypted seed:</label>
+                  <span class="status-badge status-badge-none" id="decrypt-status" data-i18n="decrypt.statusWaiting">
                     <i class="fas fa-circle"></i>
                     <span>Waiting</span>
                   </span>
@@ -340,6 +356,8 @@
     </div>
     </div>
   </main>
+  <script src="js/i18n/translations.js"></script>
+  <script src="js/i18n/i18n.js"></script>
   <script src="js/theme.js"></script>
   <script src="js/security.js"></script>
   <script src="js/interactions.js"></script>

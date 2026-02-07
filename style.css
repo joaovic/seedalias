@@ -4,6 +4,7 @@
 @import url('./css/animations.css');
 @import url('./css/security.css');
 @import url('./css/advanced.css');
+@import url('./css/i18n.css');
 
 .error {
   color: var(--error);
@@ -23,6 +24,8 @@
   border-bottom: 1px solid var(--border-light);
   padding: 1rem 0;
   margin-bottom: 2rem;
+  position: relative;
+  z-index: 5000;
 }
 
 .header-content {
