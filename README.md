@@ -6,7 +6,7 @@ A client-side web application for securely encrypting and managing cryptocurrenc
 
 Seed Alias provides a secure way to protect your cryptocurrency seed phrases by encrypting them with a passphrase you can easily remember. Instead of memorizing complex seed words, you create a memorable "alias" (passphrase) that encrypts and decrypts your seed.
 
-**Version:** 1.1.0
+**Version:** 1.2.0
 
 ## Features
 
@@ -17,7 +17,8 @@ Seed Alias provides a secure way to protect your cryptocurrency seed phrases by 
 - **File Import/Export** - Save and load encrypted seeds from text files
 - **Passphrase Visibility Toggle** - Show/hide passphrase fields for convenience
 - **Theme switch** - Allow user change light and dark mode
-- **Internatinalization** - Allow user change language to English-US or Portuguese-BR
+- **Internationalization** - Allow user change language to English-US or Portuguese-BR
+- **Network Status Indicator** - Real-time visual indicator showing network connectivity status for enhanced security awareness
 
 ## Quick Start
 

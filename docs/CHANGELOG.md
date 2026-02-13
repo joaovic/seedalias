@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.2.0] - 2026-02-12
+
+### Added
+
+- **Dynamic Network Status Indicator**
+  - Real-time network connectivity monitoring using `navigator.onLine` API
+  - Visual indicator changes color based on connection status:
+    - **Green** = Offline/Disconnected (safe for sensitive operations)
+    - **Red** = Online/Connected (warning - network connection active)
+  - Automatic updates when connection status changes
+  - Full internationalization support (English and Portuguese)
+
 ## [1.1.0] - 2026-02-07
 
 ### Added
@@ -114,6 +126,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - [x] Language/localization support
 
+### Version 1.2.0
+
+- [x] Dynamic network status indicator
+- [x] Real-time connectivity monitoring
+- [x] Visual security warning for online connections
+
 ---
 
 ## Deprecated
@@ -138,17 +156,26 @@ The following versions contained security-related changes:
 
 | Version | Details | Date |
 |---------|---------|------|
-| 1.1.0 | Added internatinalization feature | 2025-02-07 |
-| 1.0.0 | Official release milestone with complete documentation | 2025-01-26 |
+| 1.2.0 | Dynamic network status indicator with real-time monitoring | 2026-02-12 |
+| 1.1.0 | Added internationalization feature | 2026-02-07 |
+| 1.0.0 | Official release milestone with complete documentation | 2025-01-28 |
 | 0.5.0 | Cryptographic implementation with 100k iterations | 2024-12 |
 
 ---
 
 ## Migration Guides
 
+### From 1.1.0 to 1.2.0
+
+No breaking changes. Added dynamic network status indicator.
+
+**New features:**
+- Network connectivity monitoring indicator in header
+- Visual warning when network connection is active
+
 ### From 1.0.0 to 1.1.0
 
-No breaking changes. Added internatinalization only.
+No breaking changes. Added internationalization only.
 
 ### From 0.5.0 to 1.0.0
 
@@ -184,7 +211,14 @@ No breaking changes. All encrypted files from 0.1.0 remain compatible.
 
 ## Release Notes Archive
 
-### [1.1.0] - 2025-February
+### [1.2.0] - 2026-February
+
+**Highlights:**
+- Dynamic network status indicator
+- Real-time online/offline monitoring
+- Visual security warning system
+
+### [1.1.0] - 2026-February
 
 **Highlights:**
 - Internationalization
@@ -262,6 +296,6 @@ See [LICENSE](../LICENSE) file for details.
 
 ---
 
-**Last Updated:** February 2026 | **Current Version:** 1.1.0
+**Last Updated:** February 2026 | **Current Version:** 1.2.0
 
 For more information, visit the [Documentation Index](INDEX.md).

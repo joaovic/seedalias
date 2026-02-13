@@ -354,6 +354,42 @@
     observer.observe(unscrambledValue, { childList: true, characterData: true, subtree: true });
   }
 
+  function updateOfflineIndicator() {
+    const indicator = document.getElementById('offline-indicator');
+    // Select the label span (the one that's not the dot)
+    const label = indicator?.querySelector('span:not(.offline-indicator-dot)');
+    if (!indicator || !label) return;
+
+    const isOnline = navigator.onLine;
+
+    // Set the tooltip text (same message for both states)
+    const tooltipText = window.i18n?.getText?.('app.offlineTooltip') || 
+      'For maximum security, work offline to protect against network-based threats like keyloggers and remote attackers';
+    indicator.setAttribute('title', tooltipText);
+
+    if (isOnline) {
+      indicator.classList.add('online');
+      // Update the i18n key to onlineMode and get translation
+      label.setAttribute('data-i18n', 'app.onlineMode');
+      label.textContent = window.i18n?.getText?.('app.onlineMode') || 'Online (Warning)';
+    } else {
+      indicator.classList.remove('online');
+      // Update the i18n key to offlineMode and get translation
+      label.setAttribute('data-i18n', 'app.offlineMode');
+      label.textContent = window.i18n?.getText?.('app.offlineMode') || 'Offline Mode';
+    }
+  }
+
+  function initOfflineIndicator() {
+    updateOfflineIndicator();
+    window.addEventListener('online', updateOfflineIndicator);
+    window.addEventListener('offline', updateOfflineIndicator);
+    // Re-apply correct text when language changes
+    window.addEventListener('languagechange', function() {
+      setTimeout(updateOfflineIndicator, 0);
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
     updateStrengthMeter('encrypt-passphrase', 'encrypt-strength-bar', 'encrypt-strength-text');
     
@@ -369,6 +405,8 @@
     observeScrambledValue();
     observeDecryptedValue();
     observeUnscrambledValue();
+
+    initOfflineIndicator();
   });
 
   window.SecurityIndicators = {

@@ -9,7 +9,9 @@ const translations = {
       title: 'SEED ALIAS',
       tagline: 'Cryptographic Seed Protection',
       offlineMode: 'Offline Mode',
-      version: 'v1.1.0'
+      onlineMode: 'Online (Warning)',
+      offlineTooltip: 'For maximum security, work offline to protect against network-based threats like keyloggers and remote attackers',
+      version: 'v1.2.0'
     },
     security: {
       warningTitle: 'Security Notice',
@@ -110,7 +112,9 @@ const translations = {
       title: 'SEED ALIAS',
       tagline: 'Proteção Criptográfica de Seed',
       offlineMode: 'Modo Offline',
-      version: 'v1.1.0'
+      onlineMode: 'Online (Atenção)',
+      offlineTooltip: 'Para máxima segurança, trabalhe offline para se proteger contra ameaças de rede como keyloggers e atacantes remotos',
+      version: 'v1.2.0'
     },
     security: {
       warningTitle: 'Aviso de Segurança',

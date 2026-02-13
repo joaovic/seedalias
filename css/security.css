@@ -218,6 +218,13 @@
   background: rgba(16, 185, 129, 0.1);
   border: 1px solid var(--success);
   border-radius: 9999px;
+  transition: all 0.3s ease;
+}
+
+.offline-indicator.online {
+  color: var(--error);
+  background: rgba(239, 68, 68, 0.1);
+  border-color: var(--error);
 }
 
 .offline-indicator-dot {
@@ -226,6 +233,11 @@
   background: var(--success);
   border-radius: 50%;
   animation: pulse-glow 2s infinite;
+  transition: background 0.3s ease;
+}
+
+.offline-indicator.online .offline-indicator-dot {
+  background: var(--error);
 }
 
 .process-state {
