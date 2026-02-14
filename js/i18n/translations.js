@@ -11,7 +11,7 @@ const translations = {
       offlineMode: 'Offline Mode',
       onlineMode: 'Online (Warning)',
       offlineTooltip: 'For maximum security, work offline to protect against network-based threats like keyloggers and remote attackers',
-      version: 'v1.2.0'
+      version: 'v1.2.1'
     },
     security: {
       warningTitle: 'Security Notice',
@@ -114,7 +114,7 @@ const translations = {
       offlineMode: 'Modo Offline',
       onlineMode: 'Online (Atenção)',
       offlineTooltip: 'Para máxima segurança, trabalhe offline para se proteger contra ameaças de rede como keyloggers e atacantes remotos',
-      version: 'v1.2.0'
+      version: 'v1.2.1'
     },
     security: {
       warningTitle: 'Aviso de Segurança',

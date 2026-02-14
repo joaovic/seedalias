@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.2.1] - 2026-02-14
+
+### Updated
+
+- **Documentation Structure**
+  - Updated project structure documentation to reflect actual file organization
+  - Added missing js/i18n/ module to all documentation
+  - Added css/i18n.css to modular CSS documentation
+  - Updated ARCHITECTURE.md with complete module descriptions
+
+---
+
 ## [1.2.0] - 2026-02-12
 
 ### Added
@@ -296,6 +308,6 @@ See [LICENSE](../LICENSE) file for details.
 
 ---
 
-**Last Updated:** February 2026 | **Current Version:** 1.2.0
+**Last Updated:** February 2026 | **Current Version:** 1.2.1
 
 For more information, visit the [Documentation Index](INDEX.md).

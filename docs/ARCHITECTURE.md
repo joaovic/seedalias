@@ -52,10 +52,10 @@ The main entry point containing the user interface structure.
 - Loads Bootstrap 5.3 for styling
 - Loads Font Awesome for icons
 - Includes Google Fonts (IBM Plex Mono, Inter)
-- Loads modular CSS files (variables, theme, typography, animations, security, advanced)
-- Loads modular JavaScript files (theme, security, interactions, crypto, scramble)
+- Loads modular CSS files (variables, theme, typography, animations, security, advanced, i18n)
+- Loads modular JavaScript files (theme, security, interactions, crypto, scramble, i18n)
 
-### crypto.js
+### js/crypto.js
 Core encryption module implementing all cryptographic operations.
 
 **Key Components:**
@@ -65,7 +65,7 @@ Core encryption module implementing all cryptographic operations.
 - File save/load operations for encrypted seeds
 - Passphrase visibility toggle
 
-### scramble.js
+### js/scramble.js
 Optional obfuscation layer for additional security.
 
 **Key Components:**
@@ -88,7 +88,7 @@ Theme management module for dark/light mode switching.
 Main stylesheet that imports modular CSS files.
 
 **Key Components:**
-- Imported modules: variables.css, typography.css, theme.css, animations.css, security.css, advanced.css
+- Imported modules: variables.css, typography.css, theme.css, animations.css, security.css, advanced.css, i18n.css
 - General layout styles
 - Bootstrap overrides
 - Application-wide styles
@@ -116,6 +116,15 @@ UI interaction handlers and animations module.
 - Tooltip system
 - Success/error notifications
 - Advanced visual effects
+
+### js/i18n/i18n.js
+Internationalization module for multi-language support.
+
+**Key Components:**
+- Language detection and switching
+- Translation loading and management
+- Locale-specific formatting
+- Language persistence in localStorage
 
 ## Cryptographic Pipeline
 

@@ -6,7 +6,7 @@ A client-side web application for securely encrypting and managing cryptocurrenc
 
 Seed Alias provides a secure way to protect your cryptocurrency seed phrases by encrypting them with a passphrase you can easily remember. Instead of memorizing complex seed words, you create a memorable "alias" (passphrase) that encrypts and decrypts your seed.
 
-**Version:** 1.2.0
+**Version:** 1.2.1
 
 ## Features
 
@@ -65,14 +65,30 @@ The scramble feature swaps byte positions in your encrypted seed for additional 
 
 ```
 seedalias/
-├── index.html          # Main application HTML
-├── crypto.js           # Core encryption/decryption logic
-├── scramble.js         # Scramble/unscramble functionality
-├── style.css           # Application styles
-├── README.md           # This file (quick start & overview)
-├── CHANGELOG.md        # Version history and release notes
-├── donation-qrcode.jpeg # Donation QR code
-└── docs/               # Detailed documentation
+├── index.html              # Main application HTML
+├── style.css               # Main stylesheet (imports css/ modules)
+├── README.md               # This file (quick start & overview)
+├── CHANGELOG.md            # Version history and release notes
+├── donation-qrcode.jpeg    # Donation QR code
+├── css/                    # Modular CSS files
+│   ├── variables.css       # CSS custom properties (colors, spacing)
+│   ├── typography.css      # Font definitions
+│   ├── theme.css           # Dark/light theme system
+│   ├── animations.css      # Keyframes and transitions
+│   ├── security.css        # Security indicators styling
+│   ├── advanced.css        # Background effects, clipboard, advanced features
+│   └── i18n.css            # Internationalization styles
+├── js/                     # Modular JavaScript files
+│   ├── crypto.js           # Core encryption/decryption module
+│   ├── scramble.js         # Byte scrambling/unscrambling module
+│   ├── theme.js            # Theme switching (dark/light mode)
+│   ├── security.js         # Security features (strength meter, validation)
+│   ├── interactions.js     # UI interactions and animations
+│   └── i18n/               # Internationalization module
+│       ├── i18n.js         # i18n core functionality
+│       ├── translations.js # Language translations
+│       └── test.html       # i18n testing page
+└── docs/                   # Detailed documentation
     ├── INDEX.md            # Documentation navigation hub
     ├── ARCHITECTURE.md     # Technical architecture
     ├── API.md              # JavaScript API reference
@@ -83,7 +99,10 @@ seedalias/
     ├── CONTRIBUTING.md     # Contribution guidelines
     ├── TROUBLESHOOTING.md  # Common issues & solutions
     ├── DEPLOYMENT.md       # Hosting & deployment options
-    └── CHANGELOG.md        # Version history
+    ├── CHANGELOG.md        # Version history
+    ├── DOCUMENTATION_ANALYSIS.md # Documentation audit
+    ├── UI_ENHANCEMENT_PLAN.md    # UI/UX design specifications
+    └── i18n_IMPL_PLAN.md   # Internationalization implementation plan
 ```
 
 ## Security Considerations

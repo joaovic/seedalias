@@ -42,24 +42,28 @@ This guide is for developers who want to understand the codebase, modify existin
 ```
 seedalias/
 ├── index.html              # Main UI - Two-panel layout (Encrypt/Decrypt)
+├── style.css               # Main stylesheet (imports css/ modules)
+├── README.md               # User-facing project overview
+├── CHANGELOG.md            # Version history
+├── donation-qrcode.jpeg    # Support QR code
 ├── css/                    # Modular CSS files
 │   ├── variables.css       # CSS custom properties (colors, spacing, typography)
 │   ├── typography.css      # Font definitions (IBM Plex Mono, Inter)
 │   ├── theme.css          # Dark/light theme system
 │   ├── animations.css     # Keyframes and transitions
 │   ├── security.css       # Security indicators styling
-│   └── advanced.css      # Background effects, clipboard, advanced features
+│   ├── advanced.css      # Background effects, clipboard, advanced features
+│   └── i18n.css          # Internationalization styles
 ├── js/                     # Modular JavaScript files
 │   ├── crypto.js          # Core encryption/decryption module (IIFE)
 │   ├── scramble.js        # Byte scrambling module (IIFE)
 │   ├── theme.js          # Theme switching (dark/light mode)
 │   ├── security.js       # Security features (strength meter, validation)
-│   └── interactions.js   # UI interactions and animations
-├── style.css               # Main stylesheet (imports css/ modules)
-├── README.md               # User-facing project overview
-├── CHANGELOG.md            # Version history
-├── donation-qrcode.jpeg    # Support QR code
-│
+│   ├── interactions.js   # UI interactions and animations
+│   └── i18n/             # Internationalization module
+│       ├── i18n.js       # i18n core functionality
+│       ├── translations.js # Language translations
+│       └── test.html     # i18n testing page
 └── docs/
     ├── INDEX.md            # Documentation hub (navigation)
     ├── ARCHITECTURE.md     # System design and data flows
@@ -71,7 +75,10 @@ seedalias/
     ├── CONTRIBUTING.md     # Contribution guidelines
     ├── TROUBLESHOOTING.md  # Common issues and solutions
     ├── DEPLOYMENT.md       # Hosting and setup procedures
-    └── UI_ENHANCEMENT_PLAN.md # UI/UX design specifications
+    ├── CHANGELOG.md        # Version history and release notes
+    ├── DOCUMENTATION_ANALYSIS.md # Documentation audit and analysis
+    ├── UI_ENHANCEMENT_PLAN.md # UI/UX design specifications
+    └── i18n_IMPL_PLAN.md   # Internationalization implementation plan
 ```
 
 ---
